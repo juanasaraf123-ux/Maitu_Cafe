@@ -1,0 +1,132 @@
+/* ==========================================================================
+   MAITU CAFÉ — Design tokens (Etapa 1)
+   Fuente única de verdad para color, tipografía, espaciado y movimiento.
+   Se importa en Etapa 2 desde src/styles/global.css.
+   Contrastes verificados (WCAG 2.1): ver docs/01-identidad-visual.md
+   ========================================================================== */
+
+:root {
+  /* ---------- Color: paleta base ---------- */
+  /* Verde bosque profundo — montaña, sombra del cafetal */
+  --c-bosque-950: #121a14;
+  --c-bosque-900: #1b261e;   /* fondo principal oscuro */
+  --c-bosque-800: #24332a;
+  --c-bosque-700: #2e4134;
+  --c-bosque-500: #4f6650;
+  --c-bosque-300: #a8b3a0;   /* texto secundario sobre oscuro (7.2:1) */
+
+  /* Café oscuro — tueste, tierra húmeda */
+  --c-tueste-950: #1a120d;
+  --c-tueste-900: #2b1e17;   /* texto principal sobre claro (13.7:1) */
+  --c-tueste-700: #4a3326;
+  --c-tueste-500: #5c4a3d;   /* texto secundario sobre claro (7.1:1) */
+
+  /* Beige / crema — papel, pergamino, cerámica */
+  --c-crema-50:  #faf6ef;
+  --c-crema-100: #f3ecdf;    /* fondo principal claro */
+  --c-beige-200: #e7dcc8;
+  --c-beige-300: #d9c9ae;
+
+  /* Tierra — arcilla, café pergamino */
+  --c-tierra-400: #b5835a;
+  --c-tierra-500: #9c6b45;   /* decorativo / texto grande solamente */
+
+  /* Dorado discreto — detalles, líneas finas, estados activos */
+  --c-oro-400: #b8975a;      /* sobre oscuro (5.7:1) */
+  --c-oro-700: #7e6034;      /* versión para texto sobre claro */
+
+  /* Cereza madura — acento puntual (máx. 1 uso por pantalla) */
+  --c-cereza-600: #7a3326;
+
+  /* ---------- Color: roles semánticos ---------- */
+  --bg-dark: var(--c-bosque-900);
+  --bg-dark-alt: var(--c-bosque-800);
+  --bg-light: var(--c-crema-100);
+  --bg-light-alt: var(--c-beige-200);
+
+  --text-on-dark: var(--c-crema-100);
+  --text-on-dark-muted: var(--c-bosque-300);
+  --text-on-light: var(--c-tueste-900);
+  --text-on-light-muted: var(--c-tueste-500);
+
+  --accent: var(--c-oro-400);
+  --accent-on-light: var(--c-oro-700);
+  --line-on-dark: rgba(243, 236, 223, 0.16);
+  --line-on-light: rgba(43, 30, 23, 0.14);
+
+  --focus-ring: 0 0 0 2px var(--c-bosque-900), 0 0 0 4px var(--c-oro-400);
+
+  /* Velos cinematográficos para legibilidad de texto sobre video */
+  --veil-bottom: linear-gradient(180deg, rgba(18,26,20,0) 35%, rgba(18,26,20,.78) 100%);
+  --veil-full: linear-gradient(180deg, rgba(18,26,20,.35), rgba(18,26,20,.55));
+  --grain-opacity: 0.06;
+
+  /* ---------- Tipografía ---------- */
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Escala fluida (clamp) — 360px → 1440px */
+  --fs-display: clamp(2.75rem, 1.6rem + 5.2vw, 7rem);    /* frases del hero */
+  --fs-h1:      clamp(2.25rem, 1.5rem + 3.4vw, 4.75rem);
+  --fs-h2:      clamp(1.875rem, 1.35rem + 2.3vw, 3.5rem);
+  --fs-h3:      clamp(1.375rem, 1.15rem + 1vw, 2rem);
+  --fs-lead:    clamp(1.125rem, 1.04rem + .4vw, 1.375rem);
+  --fs-body:    clamp(1rem, .97rem + .15vw, 1.0625rem);
+  --fs-small:   .875rem;
+  --fs-eyebrow: .75rem;     /* etiquetas en mayúsculas con tracking */
+
+  --lh-tight: 1.02;
+  --lh-heading: 1.12;
+  --lh-body: 1.65;
+  --tracking-eyebrow: .22em;
+  --tracking-display: -.015em;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* ---------- Espaciado (base 4px, ritmo editorial amplio) ---------- */
+  --space-1: .25rem;  --space-2: .5rem;   --space-3: .75rem;
+  --space-4: 1rem;    --space-5: 1.5rem;  --space-6: 2rem;
+  --space-7: 3rem;    --space-8: 4rem;    --space-9: 6rem;
+  --space-10: 8rem;   --space-11: 12rem;
+  --section-pad-y: clamp(5rem, 3rem + 8vw, 11rem);
+  --gutter: clamp(1.25rem, .6rem + 2.8vw, 3.5rem);
+  --container: 1320px;
+  --container-text: 62ch;
+
+  /* ---------- Forma ---------- */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 24px 60px -24px rgba(18, 26, 20, .45);
+
+  /* ---------- Movimiento ---------- */
+  /* Curvas equivalentes a GSAP: expo.out / power3.inOut / power2.out */
+  --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-out: cubic-bezier(.33, 1, .68, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 900ms;
+  --dur-cinematic: 1600ms;
+
+  /* ---------- Capas ---------- */
+  --z-base: 0;
+  --z-film: 10;
+  --z-3d: 20;
+  --z-overlay: 30;
+  --z-nav: 50;
+  --z-drawer: 60;
+  --z-loader: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-cinematic: 0ms;
+  }
+}
