@@ -1,44 +1,57 @@
-# Maitu Café — Del origen a tu taza
+# Maitú Café — Del origen a tu taza
 
-Plataforma web premium para una marca de café del Tolima, Colombia: experiencia
-cinematográfica controlada por scroll + contenido de origen y proceso + tienda.
+Sitio web de **Maitú Café** (by Nicolas Bernal): un recorrido cinematográfico, controlado
+con el scroll, desde la mata hasta la taza, más contenido de marca y, después, la tienda.
 
-**Stack previsto:** React · Vite · GSAP + ScrollTrigger · Three.js + React Three Fiber · CSS3.
+**Stack:** React 19 · Vite · GSAP + ScrollTrigger · Lenis · CSS. Three.js / React Three
+Fiber se agregan en la Etapa 5.
 
-## Estado por etapas
-
-| Etapa | Descripción | Estado |
-|-------|-------------|--------|
-| 1 | Identidad visual y diseño conceptual | ✅ Propuesta lista para aprobación |
-| 2 | Configuración React + Vite | Pendiente |
-| 3 | Inicio cinematográfico | Pendiente |
-| 4 | GSAP + ScrollTrigger | Pendiente |
-| 5 | Elementos 3D | Pendiente |
-| 6 | Historia, origen y procesos | Pendiente |
-| 7 | Catálogo y tienda (pedidos por WhatsApp) | Pendiente |
-| 8 | Responsive | Pendiente |
-| 9 | Optimización y pruebas | Pendiente |
-
-## Etapa 1 — archivos
-
-| Archivo | Contenido |
-|---------|-----------|
-| `docs/01-identidad-visual.md` | Concepto, paleta con contrastes WCAG, tipografía, foto/video, voz, movimiento |
-| `docs/02-hero-cinematografico.md` | Propuesta visual y técnica del hero: apertura, 8 escenas, transiciones, 3D, móvil, rendimiento |
-| `docs/03-recursos-multimedia.md` | Lista de tomas, especificaciones de entrega y web, comandos ffmpeg, nombres de archivo |
-| `docs/04-informacion-requerida.md` | Datos que debe entregar la marca (nada se inventa) |
-| `src/styles/tokens.css` | Design tokens: color, tipografía fluida, espaciado, movimiento, capas |
-| `design/logo-provisional.svg` | Logotipo **provisional** solo para maquetar |
-| `design/styleguide.html` | Styleguide visual: fotograma del hero, paleta, tipografía, botones, storyboard |
-
-### Cómo ver la styleguide
+## Ejecutar
 
 ```bash
-python3 -m http.server 8080
+npm install
+npm run dev        # desarrollo en http://localhost:5173
+npm run build      # versión de producción en dist/
+npm run preview    # sirve dist/ en http://localhost:4173
 ```
 
-Luego abre `http://localhost:8080/design/styleguide.html` (las rutas relativas cargan
-`src/styles/tokens.css`).
+## Estado
 
-> Todo contenido marcado como **PLACEHOLDER** o **⚠ PROVISIONAL** debe reemplazarse con
-> información y material real de la marca.
+| Etapa | | Estado |
+|---|---|---|
+| 1 | Identidad visual (con la marca real) | ✅ |
+| 2 | Proyecto React + Vite | ✅ |
+| 3 | Inicio cinematográfico: apertura + recorrido por scroll | ✅ Funcional, con cuadros **provisionales** |
+| 4 | GSAP / ScrollTrigger: timeline maestro, índice, datos en vivo | ✅ Base lista; se afinará con el video real |
+| 5 | Elementos 3D | Pendiente |
+| 6 | Historia, origen y procesos | Parcial: historia y recetas reales; faltan fincas y procesos |
+| 7 | Catálogo y tienda | Pendiente (hoy: pedidos por WhatsApp) |
+| 8 | Responsive | Base lista (composición móvil propia) |
+| 9 | Optimización y pruebas | Pendiente |
+
+## Estructura
+
+```
+public/brand/            Logos oficiales en SVG (extraídos del .ai)
+public/media/hero/       Cuadros del recorrido (placeholder/ hoy, recorrido/ después)
+public/media/historia/   Foto real de Nicolas
+scripts/                 Generar cuadros provisionales · convertir el video real a cuadros
+src/content/             Textos y datos editables (marca, recetas, recorrido, menú)
+src/animations/          GSAP, scroll suave, secuencia de cuadros, timeline del recorrido
+src/components/hero/     Apertura, recorrido, índice de etapas, versión estática
+src/components/sections/ Historia, Preparación
+src/components/layout/   Menú, pie de página
+src/hooks/               Movimiento reducido, media queries, apariciones
+src/styles/              Tokens de diseño y estilos globales
+docs/                    Identidad, técnica del inicio, multimedia, datos pendientes
+```
+
+## Integrar el video real del recorrido
+
+```bash
+npm run frames:video -- ruta/al/recorrido.mp4 180 120
+```
+
+Luego, en `src/content/hero.js`, cambiar `SETS.placeholder` por `SETS.recorrido`.
+
+> Todo lo marcado como **PLACEHOLDER** o **⚠** debe reemplazarse con material real de la marca.

@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Secciones de contenido después del recorrido
+   ========================================================================== */
+.section { padding: var(--section-pad-y) 0; position: relative; }
+.section--light { background: var(--bg-light); color: var(--text-on-light); }
+.section--brand { background: var(--bg-brand); color: var(--text-on-brand); }
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-6);
+  font-variation-settings: 'opsz' 144;
+}
+.section__title em { font-style: italic; color: var(--accent-on-light); }
+.section--brand .section__title em { color: var(--c-azul-300); }
+.section--brand .eyebrow { color: var(--c-azul-300); }
+
+/* ---------- Historia ---------- */
+.story__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+}
+.story__photo { margin: 0; }
+.story__photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 921 / 1280;
+  object-fit: cover;
+  border-radius: 200px 200px var(--radius-lg) var(--radius-lg); /* arco, como el sello de la marca */
+  box-shadow: var(--shadow-soft);
+}
+.story__photo figcaption { margin-top: var(--space-3); font-size: var(--fs-small); color: var(--text-on-light-muted); }
+.story__text p { max-width: 58ch; }
+.story__sign { font-family: var(--font-display); font-style: italic; font-size: var(--fs-h3); color: var(--accent-on-light); }
+
+.values {
+  list-style: none;
+  margin: var(--space-9) 0 0;
+  padding: var(--space-7) 0 0;
+  border-top: 1px solid var(--line-on-light);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-7);
+}
+.values h3 { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h3); margin: var(--space-3) 0 var(--space-3); }
+.values p { margin: 0; color: var(--text-on-light-muted); }
+.values__num { font-size: var(--fs-eyebrow); letter-spacing: var(--tracking-eyebrow); color: var(--c-coral-700); font-weight: 600; }
+
+/* ---------- Preparación ---------- */
+.prep__intro { color: rgba(246, 240, 230, 0.8); }
+.recipes {
+  list-style: none;
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.recipe {
+  padding: var(--space-6);
+  border: 1px solid rgba(246, 240, 230, 0.22);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 42, 72, 0.35);
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out-expo);
+}
+.recipe:hover { background: rgba(15, 42, 72, 0.6); transform: translateY(-4px); }
+.recipe__note { margin: 0; font-size: var(--fs-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--c-azul-300); }
+.recipe__method { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h3); margin: var(--space-3) 0 var(--space-6); }
+.recipe__data { display: flex; justify-content: space-between; gap: var(--space-4); margin: 0 0 var(--space-5); }
+.recipe__data dt { font-size: var(--fs-eyebrow); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+.recipe__data dd { margin: var(--space-1) 0 0; font-size: 1.6rem; font-weight: 300; font-variant-numeric: tabular-nums; color: var(--c-amarillo-400); }
+.recipe__grind { margin: 0; padding-top: var(--space-4); border-top: 1px solid rgba(246, 240, 230, 0.18); font-size: var(--fs-small); }
+
+/* ---------- Pie / contacto ---------- */
+.footer { background: var(--c-cafe-900); color: var(--text-on-dark); padding: var(--section-pad-y) 0 var(--space-6); }
+.footer .eyebrow { color: var(--c-azul-300); }
+.footer__grid { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: var(--space-8); align-items: start; }
+.footer__logo { width: 170px; height: auto; }
+.footer__desc { color: var(--text-on-dark-muted); }
+.footer__title { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: var(--lh-heading); margin: 0 0 var(--space-4); }
+.footer__grid p { color: var(--text-on-dark-muted); }
+.footer__links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
+.footer__links span { display: block; font-size: var(--fs-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--text-on-dark-muted); margin-bottom: var(--space-1); }
+.footer__links a { color: var(--text-on-dark); text-decoration: none; font-size: 1.05rem; word-break: break-word; }
+.footer__links a:hover { color: var(--c-azul-300); }
+.footer__bottom {
+  margin-top: var(--space-9);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line-on-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-small);
+  color: var(--text-on-dark-muted);
+}
+.footer__bottom p { margin: 0; }
+
+/* ---------- Versión estática del recorrido ---------- */
+.film-static { background: var(--c-cafe-900); color: var(--text-on-dark); padding-top: var(--nav-h); }
+.film-static__chapter { position: relative; }
+.film-static__chapter img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
+.film-static__text { padding: var(--space-6) var(--gutter) var(--space-8); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 899px) {
+  .story__grid { grid-template-columns: 1fr; }
+  .story__photo { max-width: 420px; }
+  .values, .recipes { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: var(--space-7); }
+}

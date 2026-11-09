@@ -1,5 +1,10 @@
 # Recursos multimedia necesarios
 
+> **Actualización:** el inicio ahora usa **un solo video continuo** de la mata a la
+> taza, convertido en cuadros (ver `docs/02-hero-cinematografico.md`, sección 3).
+> La lista de tomas de abajo sigue sirviendo como guion de ese video y para las
+> fotos de las secciones de origen y proceso.
+
 > Prioridad: el material **real de la marca**. Mientras llega, la web muestra
 > placeholders tonales etiquetados ("PLACEHOLDER — Escena X"). No se usarán imágenes de
 > stock presentadas como propias.

@@ -1,35 +1,36 @@
-# Información que necesitamos de la marca
+# Información de la marca
 
-Mientras no se reciba, cada campo se mostrará vacío o como `⚠ PROVISIONAL` en la web.
-Nada de esto se inventará.
+## Recibido (paquete "Maitú Nicolas")
 
-## Marca
-- [ ] Nombre comercial exacto (¿"Maitu Café"?) y significado/historia del nombre.
-- [ ] Logotipo oficial en SVG (horizontal, símbolo, versiones clara y oscura).
-- [ ] Tipografías corporativas, si existen.
-- [ ] Historia y motivación del proyecto (texto libre; nosotros lo editamos).
-- [ ] Redes sociales, correo y número de **WhatsApp** para pedidos.
+- [x] Nombre: **Maitú Café**, by Nicolas Bernal.
+- [x] Logotipos (archivo `.ai`, PDF, PNG): versiones a color, blanco, negro, sellos.
+- [x] Manual de marca: esencia, historia, palabras clave, colores, tipografías.
+- [x] Arte del empaque: colores, texto del reverso, contacto, recetas.
+- [x] Contacto: WhatsApp 313 481 9333 · Instagram @maitucafe · Maitucafe12@gmail.com.
+- [x] Recetas (empaque): goteo 25 g / 380 ml / 3:30 · prensa francesa 25 g / 380 ml /
+      4:40 · AeroPress 16 g / 225 ml / 2:30.
+- [x] Presentación del empaque: 12 oz (340 g).
+- [x] Una foto real: Nicolas catando.
 
-## Origen
-- [ ] Fincas proveedoras: nombre, municipio/vereda del Tolima, altitud (si se conoce).
-- [ ] Productores: nombre y autorización para publicarlo y mostrar su imagen.
-- [ ] Tipo de relación con los productores (compra directa, frecuencia, etc.).
+## Pendiente
 
-## Proceso (por cada café)
-- [ ] Variedad(es).
-- [ ] Proceso de beneficio (lavado, honey, natural, fermentaciones especiales…).
-- [ ] Tipo de secado.
-- [ ] Nivel/perfil de tostión y quién tuesta.
-- [ ] Notas de sabor y aroma **documentadas** (catación propia o de terceros).
-- [ ] Certificaciones (solo si existen y son vigentes).
+**Para el inicio (prioridad):**
+- [ ] Video continuo del recorrido, de la mata a la taza (ver `docs/02`).
+- [ ] Archivo de la fuente **Peachy Woman** (`.woff2`) con licencia web.
 
-## Comercial
-- [ ] Lista de productos: nombre, presentación (grano/molido), pesos, precios (COP).
-- [ ] Grados de molienda ofrecidos (si se muele por método).
-- [ ] Disponibilidad/stock y cómo se actualizará.
-- [ ] Cobertura y costos de envío, tiempos de entrega.
-- [ ] Pasarela de pago preferida a futuro (Wompi, Mercado Pago, PayU, Bold…).
+**Origen y proceso:**
+- [ ] Fincas: nombre y municipio del Tolima. Productores, solo con su autorización.
+- [ ] Variedades y proceso de beneficio de cada café (lavado, honey, natural…).
+- [ ] Notas de sabor documentadas por catación.
+- [ ] Fotos reales: finca, recolección, secado, tostión, empaque, preparación.
 
-## Preparación
-- [ ] Método(s) de filtrado que la marca recomienda y sus recetas (proporción,
-      molienda, temperatura, tiempo).
+**Tienda (Etapa 7):**
+- [ ] Lista de cafés: nombre, presentación (grano/molido), pesos, precios.
+- [ ] Envíos: cobertura, costos y tiempos.
+- [ ] Pasarela de pago a futuro (Wompi, Mercado Pago, Bold…).
+
+**Para confirmar:**
+- [ ] El sello dice "Catador SCA": ¿qué certificación tiene Nicolas? Solo se
+      mencionará en la web si se confirma.
+- [ ] El empaque dice "¡La mejor calidad!" y "Café de Colombia", no Tolima. ¿Todo el
+      café viene del Tolima?
