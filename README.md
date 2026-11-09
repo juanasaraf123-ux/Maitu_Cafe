@@ -4,8 +4,8 @@ Sitio web y tienda virtual de **Maitú Café** (by Nicolas Bernal): inicio con v
 historia, proceso, preparación y **tienda con carrito, pagos con Wompi (PSE, tarjetas,
 Nequi) y seguimiento de pedidos**.
 
-**Stack:** React 19 · Vite · React Router · GSAP · Lenis · Node 22 + Express 5 · SQLite
-(integrado en Node) · Wompi.
+**Stack:** React 19 · Vite · React Router · GSAP · Lenis · Three.js + React Three Fiber ·
+Node 22 + Express 5 · SQLite (integrado en Node) · Wompi.
 
 ## Ejecutar
 
@@ -47,11 +47,11 @@ npm run start
 
 | Etapa | | Estado |
 |---|---|---|
-| 1 | Identidad visual | ✅ Paleta v3: café oscuro, caramelo, crema + acentos del manual y el empaque |
+| 1 | Identidad visual | ✅ v4: diseño oscuro y cálido con el patrón del empaque, efectos y movimiento |
 | 2 | React + Vite | ✅ |
 | 3 | Inicio | ✅ Video en marco con borde en onda, letrero de etapa, índice 01–08 · video **provisional** |
 | 4 | Animaciones GSAP | ✅ |
-| 5 | Elementos 3D | Pendiente |
+| 5 | Elementos 3D | ✅ Bolsa Maitú en 3D con el arte real del empaque (inicio, tienda y ficha) |
 | 6 | Historia, proceso, preparación | ✅ Con datos reales; faltan fincas y procesos |
 | 7 | Tienda | ✅ Catálogo, ficha, carrito, pago Wompi, seguimiento, panel · **faltan precios reales y llaves de Wompi** |
 | 8 | Responsive | ✅ Base |
@@ -67,7 +67,7 @@ data/                    Base de datos (no se sube al repositorio)
 public/brand/            Logos oficiales en SVG
 public/media/            Video del inicio, foto de Nicolas, empaque
 src/pages/               Inicio, Tienda, Ficha, Pago, Pedido, Panel
-src/components/          hero/, sections/, shop/, layout/, admin/
+src/components/          hero/, sections/, shop/, layout/, admin/, three/ (bolsa 3D), fx/ (efectos)
 src/store/               Carrito y configuración de la tienda
 src/content/             Textos y datos editables de la marca
 docs/                    Identidad, inicio, multimedia, datos pendientes, tienda

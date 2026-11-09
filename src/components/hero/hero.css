@@ -46,6 +46,7 @@
   background: var(--c-cafe-900);
   color: var(--text-on-dark);
   isolation: isolate;
+  box-shadow: 0 0 0 1px rgba(217, 168, 108, 0.25), 0 30px 80px -30px rgba(217, 168, 108, 0.35);
 }
 /* La onda tiene el color de la página: "recorta" el video con una curva suave. */
 .hero__wave {
@@ -59,7 +60,7 @@
   pointer-events: none;
   z-index: 2;
 }
-.hero__wave path { fill: var(--bg-light); }
+.hero__wave path { fill: var(--c-cafe-950); }
 .hero__video {
   position: absolute;
   inset: 0;

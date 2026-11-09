@@ -65,7 +65,7 @@ export default function OrderPage() {
   if (!order) {
     return (
       <main className="page container order-lookup">
-        <p className="script">Seguimiento</p>
+        <p className="kicker">Seguimiento</p>
         <h1 className="page__title">¿Dónde está mi café?</h1>
         <p className="lead">Escribe el código de tu pedido (empieza por MT-) y el correo con el que compraste.</p>
         <form className="card lookup-form" onSubmit={search}>
@@ -81,7 +81,7 @@ export default function OrderPage() {
   const waMsg = `Hola Maitú, mi pedido es ${order.code}.`
   return (
     <main className="page container order">
-      <p className="script">Pedido {order.code}</p>
+      <p className="kicker">Pedido {order.code}</p>
       <h1 className="page__title">{order.statusLabel}</h1>
 
       {order.status === 'pendiente_pago' && (

@@ -1,12 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
 import { api } from '../lib/api.js'
 import ProductCard from '../components/shop/ProductCard.jsx'
+import Bag3D from '../components/three/Bag3D.jsx'
+import SplitHeading from '../components/fx/SplitHeading.jsx'
+import { useStoreConfig } from '../store/StoreConfig.jsx'
 import { usePageTitle } from '../hooks/usePageTitle.js'
 import '../components/shop/shop.css'
+import '../components/sections/sections.css'
 
-/** Catálogo: búsqueda, filtro grano/molido y orden por precio. */
+/** Tienda: encabezado con la bolsa 3D, filtros y catálogo. */
 export default function ShopPage() {
   usePageTitle('Tienda')
+  const cfg = useStoreConfig()
   const [products, setProducts] = useState(null)
   const [error, setError] = useState('')
   const [q, setQ] = useState('')
@@ -31,15 +36,29 @@ export default function ShopPage() {
   }, [products, q, presentation, sort])
 
   return (
-    <main className="page shop">
-      <header className="page__head container">
-        <p className="script">Tienda Maitú</p>
-        <h1 className="page__title">Nuestros cafés</h1>
-        <p className="lead">Elige tu café en grano o molido. Pagas seguro con PSE, tarjeta o Nequi y sigues tu pedido hasta tu puerta.</p>
-      </header>
+    <main className="shop">
+      <section className="shop-hero">
+        <span className="pattern pattern--caramel" aria-hidden="true" />
+        <span className="glow" style={{ right: '-15vmax', top: '-20vmax' }} aria-hidden="true" />
+        <div className="container shop-hero__grid">
+          <div>
+            <p className="kicker">Tienda Maitú</p>
+            <SplitHeading as="h1" className="display-title" text="Café de Colombia *directo a tu casa*" />
+            <p className="lead">Elige tu café en grano o molido, paga seguro en línea y sigue tu pedido hasta tu puerta.</p>
+            <ul className="trust-chips">
+              {cfg.paymentsEnabled ? <><li>🏦 PSE</li><li>💳 Tarjetas</li><li>📱 Nequi</li></> : <li>💬 Pago coordinado por WhatsApp</li>}
+              <li>📦 Seguimiento</li>
+            </ul>
+          </div>
+          <div className="shop-hero__stage">
+            <div className="showcase__halo" aria-hidden="true" />
+            <Bag3D glow="#d9a86c" />
+          </div>
+        </div>
+      </section>
 
-      <div className="container">
-        <div className="filters" role="search">
+      <div className="container shop__body">
+        <div className="filters glass" role="search">
           <label className="field field--search">
             <span className="sr-only">Buscar café</span>
             <input type="search" placeholder="Buscar café…" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -65,7 +84,7 @@ export default function ShopPage() {
         {!products && !error && <p className="muted">Cargando cafés…</p>}
         {products && list.length === 0 && <p className="muted">No encontramos cafés con esos filtros.</p>}
         <div className="pgrid">
-          {list.map((p) => <ProductCard key={p.slug} product={p} />)}
+          {list.map((p, i) => <ProductCard key={p.slug} product={p} index={i} />)}
         </div>
       </div>
     </main>

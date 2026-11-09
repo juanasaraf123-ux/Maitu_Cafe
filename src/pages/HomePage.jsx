@@ -7,6 +7,8 @@ import ProcessSection from '../components/sections/ProcessSection.jsx'
 import ProductsSection from '../components/sections/ProductsSection.jsx'
 import PrepSection from '../components/sections/PrepSection.jsx'
 import { usePageTitle } from '../hooks/usePageTitle.js'
+import Marquee from '../components/fx/Marquee.jsx'
+import Wave from '../components/fx/Wave.jsx'
 
 /** Inicio: video + historia, proceso, cafés y preparación. */
 export default function HomePage({ introDone, onReady, reducedMotion }) {
@@ -23,10 +25,14 @@ export default function HomePage({ introDone, onReady, reducedMotion }) {
   return (
     <main>
       <HeroVideo introDone={introDone} onReady={onReady} reducedMotion={reducedMotion} />
+      <Marquee items={['Del origen <i>a tu taza</i>', 'Café de Colombia', '<i>by</i> Nicolas Bernal', 'Grano · Molido']} />
       <StorySection />
       <ProcessSection />
+      <div className="wave-wrap wave-wrap--to-caramel"><Wave color="#d9a86c" /></div>
       <ProductsSection />
+      <Marquee alt items={['Recién molido', 'Filtrado a mano', 'Hecho con paciencia', 'Maitú Café']} />
       <PrepSection />
+      <div className="wave-wrap wave-wrap--to-dark"><Wave color="#1a100b" /></div>
     </main>
   )
 }

@@ -1,4 +1,5 @@
 @import './tokens.css';
+@import './fx.css';
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -11,8 +12,8 @@ body {
   font-family: var(--font-sans);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--text-on-light);
-  background: var(--bg-light);
+  color: var(--text-on-dark);
+  background: var(--c-cafe-950);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -82,19 +83,23 @@ button { font: inherit; }
 .btn--grow { flex: 1; justify-content: center; }
 .btn--sm { padding: 0.6em 1em; font-size: 0.8rem; }
 .btn--light-outline { background: transparent; border-color: currentColor; color: inherit; }
-.btn--light-outline:hover { background: rgba(36, 22, 15, 0.06); }
+.btn--light-outline:hover { background: rgba(251, 246, 239, 0.08); }
+.card .link-btn { color: var(--c-teal-700); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.link-btn { background: none; border: 0; padding: 0; color: var(--c-teal-700); font: inherit; font-size: var(--fs-small); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--c-caramelo-300); font: inherit; font-size: var(--fs-small); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .icon-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-on-light); background: transparent; cursor: pointer; font-size: 1rem; color: inherit; }
-a { color: var(--c-teal-700); }
+a { color: var(--c-caramelo-300); }
+.card a, .section--light a { color: var(--c-teal-700); }
+.card .btn, .section--light .btn { color: inherit; }
 
 /* ---------- Utilidades de página ---------- */
-.muted { color: var(--text-on-light-muted); }
+.muted { color: var(--text-on-dark-muted); }
+.card .muted, .section--light .muted { color: var(--text-on-light-muted); }
 .small { font-size: var(--fs-small); }
 .page { padding: calc(var(--nav-h) + var(--space-8)) 0 var(--space-9); min-height: 70vh; }
 .page__head { margin-bottom: var(--space-7); max-width: 46rem; }
 .page__title { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h1); line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 var(--space-4); font-variation-settings: 'opsz' 144; }
-.card { background: #fff; border: 1px solid var(--line-on-light); border-radius: var(--radius-lg); padding: var(--space-6); }
+.card { background: var(--c-crema-50); color: var(--text-on-light); border: 1px solid rgba(251,246,239,.4); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: 0 30px 60px -40px rgba(0,0,0,.8); }
 .alert { padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: #fff6db; border: 1px solid #ecd48d; color: var(--c-cafe-900); font-size: var(--fs-small); }
 .alert--error { background: #fdeceb; border-color: #f0b8af; color: #7c2416; }
 .demo-banner { position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 70; width: max-content; max-width: calc(100% - 24px); margin: 0; padding: 0.45rem 1rem; border-radius: var(--radius-pill); background: var(--c-amarillo-300); color: var(--c-cafe-900); font-size: 0.75rem; font-weight: 600; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,.2); pointer-events: none; }

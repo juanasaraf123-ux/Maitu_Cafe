@@ -6,7 +6,9 @@ import { useCart } from '../store/CartContext.jsx'
 import { useStoreConfig } from '../store/StoreConfig.jsx'
 import { StockBadge } from '../components/shop/ProductCard.jsx'
 import { usePageTitle } from '../hooks/usePageTitle.js'
+import Bag3D from '../components/three/Bag3D.jsx'
 import '../components/shop/shop.css'
+import '../components/sections/sections.css'
 
 /** Ficha del café: presentación (grano/molido), peso, cantidad, stock y precio. */
 export default function ProductPage() {
@@ -48,18 +50,20 @@ export default function ProductPage() {
         <nav className="crumbs" aria-label="Ruta"><Link to="/tienda">Tienda</Link> / <span>{product.name}</span></nav>
         <div className="product__grid">
           <div className="product__media">
-            {product.image && <img src={product.image} alt={`Empaque de ${product.name}`} width="720" height="1039" />}
+            <span className="pattern" aria-hidden="true" />
+            <div className="showcase__halo" aria-hidden="true" />
+            <Bag3D glow="#f2cf7e" label={`Empaque de ${product.name} en 3D`} />
           </div>
           <div className="product__info">
-            <p className="script">Café de {product.origin || 'Colombia'}</p>
-            <h1 className="page__title">{product.name}</h1>
+            <p className="kicker">Café de {product.origin || 'Colombia'}</p>
+            <h1 className="display-title">{product.name}</h1>
             {product.summary && <p className="lead">{product.summary}</p>}
 
             {product.variants.length === 0 ? (
               <p className="alert">Muy pronto disponible en la tienda. Mientras tanto puedes pedirlo por WhatsApp.</p>
             ) : (
               <>
-                <p className="product__price">{variant ? formatCOP(variant.price) : '—'}</p>
+                <p className="product__price text-gradient">{variant ? formatCOP(variant.price) : '—'}</p>
                 <fieldset className="opts">
                   <legend>Presentación</legend>
                   {presentations.map(([k, label]) => (
@@ -87,7 +91,7 @@ export default function ProductPage() {
                     <span aria-live="polite">{qty}</span>
                     <button onClick={() => setQty((n) => Math.min(maxQty, n + 1))} disabled={qty >= maxQty} aria-label="Más">+</button>
                   </div>
-                  <button className="btn btn--caramel btn--grow" disabled={!variant || maxQty < 1} onClick={() => add(product, variant, qty)}>
+                  <button className="btn btn--glow btn--grow" disabled={!variant || maxQty < 1} onClick={() => add(product, variant, qty)}>
                     {variant?.stock === 0 ? 'Agotado' : maxQty < 1 ? 'Ya tienes todo el stock en el carrito' : 'Agregar al carrito'}
                   </button>
                 </div>

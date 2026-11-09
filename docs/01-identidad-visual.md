@@ -1,4 +1,25 @@
-# Etapa 1 · Identidad visual (versión 3)
+# Etapa 1 · Identidad visual (versión 4)
+
+> **v4 (actual):** la marca pidió algo "innovador, que resalte, nada cuadriculado ni
+> blanco". Cambios:
+> - **Fondo café oscuro** con brillos caramelo y grano de película en todo el sitio.
+> - **El patrón de figuras del empaque** (extraído del arte original) como textura viva
+>   que se mueve lentamente, en caramelo, café o blanco según la sección.
+> - **Ondas** entre secciones y **cintas de texto gigante** inclinadas que reaccionan
+>   al scroll.
+> - **Títulos** que entran palabra por palabra, con palabras en cursiva y degradado
+>   caramelo.
+> - **Bolsa Maitú en 3D** con el arte real en las 5 caras (inicio, tienda y ficha); se
+>   gira con el mouse o el dedo.
+> - **Proceso** en recorrido horizontal: 8 tarjetas de color, de la mata verde a la
+>   taza.
+> - **Tarjetas** de vidrio que se inclinan con un brillo que sigue al puntero; cursor
+>   propio y botones magnéticos (solo con mouse).
+> - Con "reducir movimiento" se desactivan las animaciones automáticas.
+>
+> La paleta sigue siendo la de la v3 (abajo).
+
+## Versión 3
 
 > **v3 (actual):** la marca pidió "café oscuro, caramelo, crema, los colores del manual
 > y del empaque, algo de todo un poco". Base: café oscuro + caramelo + crema. Acentos con

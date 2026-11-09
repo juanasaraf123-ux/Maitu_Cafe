@@ -41,7 +41,7 @@ export default function Navbar({ visible, overHero }) {
   return (
     <header className={`nav ${solid ? 'is-solid' : ''} ${visible ? 'is-visible' : ''} ${open ? 'is-open' : ''}`}>
       <Link className="nav__logo" to="/" onClick={close} aria-label={`${brand.name}, ir al inicio`}>
-        <img src={solid && !open ? brand.logos.color : brand.logos.white} alt="" width="132" height="102" />
+        <img src={brand.logos.white} alt="" width="132" height="102" />
       </Link>
 
       <nav className="nav__links" id="menu-principal" aria-label="Principal">

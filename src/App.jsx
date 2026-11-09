@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer.jsx'
 import HeroIntro from './components/hero/HeroIntro.jsx'
 import HomePage from './pages/HomePage.jsx'
 import CartDrawer from './components/shop/CartDrawer.jsx'
+import Cursor from './components/fx/Cursor.jsx'
 
 // La tienda y el panel se cargan solo cuando se visitan (división de código).
 const ShopPage = lazy(() => import('./pages/ShopPage.jsx'))
@@ -17,6 +18,7 @@ const ProductPage = lazy(() => import('./pages/ProductPage.jsx'))
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage.jsx'))
 const OrderPage = lazy(() => import('./pages/OrderPage.jsx'))
 const AdminPage = lazy(() => import('./pages/AdminPage.jsx'))
+const BagPreview = import.meta.env.DEV ? lazy(() => import('./dev/BagPreview.jsx')) : null
 
 export default function App() {
   return (
@@ -92,12 +94,14 @@ function Shell() {
             <Route path="/pedido" element={<OrderPage />} />
             <Route path="/pedido/:code" element={<OrderPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            {BagPreview && <Route path="/dev/bolsa" element={<BagPreview />} />}
             <Route path="*" element={<main className="page container"><h1 className="page__title">Página no encontrada</h1><a href="/">Volver al inicio</a></main>} />
           </Routes>
         </Suspense>
       </div>
       {!isAdmin && <Footer />}
       {!isAdmin && <CartDrawer />}
+      {!isAdmin && <Cursor />}
     </>
   )
 }
