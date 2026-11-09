@@ -18,15 +18,18 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "public", "media", "hero", "placeholder")
 W, H = 1600, 900
-FRAMES_PER_CHAPTER = 18
+FRAMES_PER_CHAPTER = 14
 
 # (nombre, fondo, color del sujeto) — colores de referencia, no fotografía.
 CHAPTERS = [
-    ("01 · La cosecha", "#24361f", "#b8352a"),
-    ("02 · El secado", "#7d5e33", "#d2b27a"),
-    ("03 · La molienda", "#1b120c", "#4a2f1e"),
-    ("04 · El filtrado", "#20160f", "#8a5a3b"),
-    ("05 · Tu taza", "#e8dcc8", "#3b2619"),
+    ("01 · La mata", "#24361f", "#b8352a"),
+    ("02 · La cosecha", "#33401f", "#9e2f25"),
+    ("03 · El beneficio", "#3e3122", "#d8c7a4"),
+    ("04 · El secado", "#7d5e33", "#d2b27a"),
+    ("05 · El grano", "#24170f", "#6e4a2e"),
+    ("06 · La molienda", "#1b120c", "#4a2f1e"),
+    ("07 · El filtrado", "#20160f", "#8a5a3b"),
+    ("08 · Tu taza", "#e8dcc8", "#3b2619"),
 ]
 
 

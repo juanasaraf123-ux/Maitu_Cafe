@@ -35,8 +35,8 @@ export function buildHeroTimeline({
     scrollTrigger: {
       trigger: section,
       start: 'top top',
-      // Distancia de scroll: ~1.3 pantallas por etapa en escritorio, ~1 en móvil.
-      end: () => `+=${Math.round(window.innerHeight * n * (isMobile ? 1 : 1.3))}`,
+      // Distancia de scroll: ~1.1 pantallas por etapa en escritorio, ~0.85 en móvil.
+      end: () => `+=${Math.round(window.innerHeight * n * (isMobile ? 0.85 : 1.1))}`,
       pin: true,
       scrub: 0.8,
       anticipatePin: 1,

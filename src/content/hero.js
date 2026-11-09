@@ -11,8 +11,8 @@ import { heroRecipe } from './recipes.js'
  */
 const SETS = {
   placeholder: {
-    desktop: { path: '/media/hero/placeholder', count: 90 },
-    mobile: { path: '/media/hero/placeholder', count: 90 },
+    desktop: { path: '/media/hero/placeholder', count: 112 },
+    mobile: { path: '/media/hero/placeholder', count: 112 },
     isPlaceholder: true,
   },
   recorrido: {
@@ -26,30 +26,34 @@ export const heroFrames = SETS.placeholder
 
 export const heroIntro = {
   headline: ['Todo comienza', 'mucho antes', 'del primer sorbo.'],
-  sub: 'En la finca, la cereza madura se coge a mano, directo de la mata.',
+  sub: 'Café de Colombia, de la finca a tu taza.',
   cta: 'Descubrir el recorrido',
 }
 
 /**
- * Recorrido definido por la marca:
- * la cereza se coge de la mata en la finca → se seca → se muele → se filtra → la taza.
+ * Recorrido en 8 etapas (confirmado por la marca):
+ * la mata → la cosecha → el beneficio → el secado → el grano → la molienda →
+ * el filtrado → tu taza.
  */
 export const chapters = [
-  { id: 'cosecha', number: '01', title: 'La cosecha', copy: null }, // usa heroIntro
-  { id: 'secado', number: '02', title: 'El secado', copy: 'El sol y el tiempo hacen su parte.' },
+  { id: 'mata', number: '01', title: 'La mata', copy: null }, // usa heroIntro
+  { id: 'cosecha', number: '02', title: 'La cosecha', copy: 'En la finca, la cereza madura se coge a mano, directo de la mata.' },
+  { id: 'beneficio', number: '03', title: 'El beneficio', copy: 'Se despulpa y se lava: del fruto queda el grano.' },
+  { id: 'secado', number: '04', title: 'El secado', copy: 'El sol y el tiempo hacen su parte.' },
+  { id: 'grano', number: '05', title: 'El grano', copy: 'Lo esencial del fruto, listo para el tueste.' },
   {
     id: 'molienda',
-    number: '03',
+    number: '06',
     title: 'La molienda',
     copy: 'Justo antes de preparar, para no perder el aroma.',
     data: [{ label: 'Café', value: `${heroRecipe.coffeeGrams} g` }, { label: 'Molienda', value: heroRecipe.grind.replace('Molienda ', '') }],
   },
   {
     id: 'filtrado',
-    number: '04',
+    number: '07',
     title: 'El filtrado',
     copy: 'Agua, tiempo y paciencia.',
     live: { waterMl: heroRecipe.waterMl, seconds: heroRecipe.timeSeconds },
   },
-  { id: 'taza', number: '05', title: 'Tu taza', copy: 'Del origen a tu taza.', final: true },
+  { id: 'taza', number: '08', title: 'Tu taza', copy: 'Del origen a tu taza.', final: true },
 ]
