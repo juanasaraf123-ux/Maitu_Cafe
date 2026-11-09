@@ -11,8 +11,8 @@ import { heroRecipe } from './recipes.js'
  */
 const SETS = {
   placeholder: {
-    desktop: { path: '/media/hero/placeholder', count: 96 },
-    mobile: { path: '/media/hero/placeholder', count: 96 },
+    desktop: { path: '/media/hero/placeholder', count: 90 },
+    mobile: { path: '/media/hero/placeholder', count: 90 },
     isPlaceholder: true,
   },
   recorrido: {
@@ -26,29 +26,30 @@ export const heroFrames = SETS.placeholder
 
 export const heroIntro = {
   headline: ['Todo comienza', 'mucho antes', 'del primer sorbo.'],
-  sub: 'Café de Colombia, del Tolima a tu taza.',
+  sub: 'En la finca, la cereza madura se coge a mano, directo de la mata.',
   cta: 'Descubrir el recorrido',
 }
 
+/**
+ * Recorrido definido por la marca:
+ * la cereza se coge de la mata en la finca → se seca → se muele → se filtra → la taza.
+ */
 export const chapters = [
-  { id: 'mata', number: '01', title: 'La mata', copy: null }, // usa heroIntro
-  { id: 'cosecha', number: '02', title: 'La cosecha', copy: 'Cereza por cereza, se recoge solo el fruto maduro.' },
-  { id: 'beneficio', number: '03', title: 'El beneficio', copy: 'El fruto se transforma según lo que cada café necesita.' },
-  { id: 'secado', number: '04', title: 'El secado', copy: 'El sol y el tiempo hacen su parte.' },
-  { id: 'grano', number: '05', title: 'El grano', copy: 'Del fruto queda lo esencial: el grano.' },
+  { id: 'cosecha', number: '01', title: 'La cosecha', copy: null }, // usa heroIntro
+  { id: 'secado', number: '02', title: 'El secado', copy: 'El sol y el tiempo hacen su parte.' },
   {
     id: 'molienda',
-    number: '06',
+    number: '03',
     title: 'La molienda',
     copy: 'Justo antes de preparar, para no perder el aroma.',
     data: [{ label: 'Café', value: `${heroRecipe.coffeeGrams} g` }, { label: 'Molienda', value: heroRecipe.grind.replace('Molienda ', '') }],
   },
   {
     id: 'filtrado',
-    number: '07',
+    number: '04',
     title: 'El filtrado',
     copy: 'Agua, tiempo y paciencia.',
     live: { waterMl: heroRecipe.waterMl, seconds: heroRecipe.timeSeconds },
   },
-  { id: 'taza', number: '08', title: 'Tu taza', copy: 'Del origen a tu taza.', final: true },
+  { id: 'taza', number: '05', title: 'Tu taza', copy: 'Del origen a tu taza.', final: true },
 ]

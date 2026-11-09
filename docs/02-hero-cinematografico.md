@@ -12,25 +12,25 @@
 2. **Titular**: "Todo comienza / *mucho antes* / del primer sorbo." entra línea por
    línea, con el botón **Descubrir el recorrido**, que lleva a la etapa 02.
 3. **Recorrido** (`HeroFilm`): la pantalla se fija y el scroll hace avanzar o
-   retroceder un video continuo, desde la mata hasta la taza:
+   retroceder un video continuo, desde la mata hasta la taza, en cinco etapas:
 
 | # | Etapa | Texto en pantalla | Datos |
 |---|---|---|---|
-| 01 | La mata | Titular principal | — |
-| 02 | La cosecha | Cereza por cereza, se recoge solo el fruto maduro. | — |
-| 03 | El beneficio | El fruto se transforma según lo que cada café necesita. | ⚠ Proceso real por confirmar |
-| 04 | El secado | El sol y el tiempo hacen su parte. | — |
-| 05 | El grano | Del fruto queda lo esencial: el grano. | — |
-| 06 | La molienda | Justo antes de preparar, para no perder el aroma. | 25 g · molienda media (empaque) |
-| 07 | El filtrado | Agua, tiempo y paciencia. | **En vivo**: 0 → 380 ml y 0:00 → 3:30 (receta del empaque) |
-| 08 | Tu taza | Del origen a tu taza. | Botones: Nuestra historia · Pedir por WhatsApp |
+| 01 | La cosecha | Titular principal + "En la finca, la cereza madura se coge a mano, directo de la mata." | — |
+| 02 | El secado | El sol y el tiempo hacen su parte. | — |
+| 03 | La molienda | Justo antes de preparar, para no perder el aroma. | 25 g · molienda media (empaque) |
+| 04 | El filtrado | Agua, tiempo y paciencia. | **En vivo**: 0 → 380 ml y 0:00 → 3:30 (receta del empaque) |
+| 05 | Tu taza | Del origen a tu taza. | Botones: Nuestra historia · Pedir por WhatsApp |
+
+Recorrido definido por la marca: **la cereza se coge de la mata en la finca → se seca →
+se muele → se filtra → llega a la taza.**
 
 Textos editables en `src/content/hero.js`. Son textos de la web, no datos técnicos.
 
 4. Al terminar, la página se suelta y continúa con **Nuestra historia**,
    **Preparación** y **Contacto**.
 
-Siempre visibles durante el recorrido: índice 01–08 en el que se puede hacer clic
+Siempre visibles durante el recorrido: índice 01–05 en el que se puede hacer clic
 (en móvil, contador compacto), barra de progreso azul y el aviso de animación
 provisional mientras no exista el video real.
 
@@ -56,13 +56,14 @@ datos en vivo y barra de progreso. Cada capítulo tiene la etiqueta `ch-N`, que 
 
 ## 3. El video del recorrido
 
-Es lo único que falta para que el inicio sea el definitivo. Hoy se usan 96 cuadros
+Es lo único que falta para que el inicio sea el definitivo. Hoy se usan 90 cuadros
 **provisionales** (`npm run frames:placeholder`), marcados con la etiqueta
 "PLACEHOLDER".
 
 Requisitos del video final:
 
-- Una sola toma continua (o tomas unidas sin cortes visibles) que pase por las 8 etapas.
+- Una sola toma continua (o tomas unidas sin cortes visibles) que pase por las 5 etapas:
+  cereza en la mata (finca) → secado → molienda → filtrado → taza.
 - 10–20 s, 24–30 fps, 4K o 1080p, sin audio.
 - Encuadre con aire en el centro, para poder recortar la versión vertical del móvil.
 - Zona izquierda e inferior más tranquila: ahí va el texto.
@@ -80,5 +81,5 @@ cargados de forma progresiva).
 ## 4. Pendiente (Etapas 4–5)
 
 - Transiciones de color entre capítulos sincronizadas con el video real.
-- Elemento 3D (grano de café con React Three Fiber) en la transición grano → molienda,
+- Elemento 3D (grano de café con React Three Fiber) en la transición secado → molienda,
   con alternativa 2D para equipos sin WebGL.
