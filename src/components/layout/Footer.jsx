@@ -1,4 +1,5 @@
 import { brand, emailLink, instagramLink, whatsappLink } from '../../content/brand.js'
+import { Link } from 'react-router-dom'
 import { navLinks } from '../../content/navigation.js'
 import '../sections/sections.css'
 
@@ -16,7 +17,7 @@ export default function Footer() {
           <h2 className="footer__head">Explora</h2>
           <ul className="footer__list">
             {navLinks.map((l) => (
-              <li key={l.href}><a href={l.href}>{l.label}</a></li>
+              <li key={l.href}>{l.href.startsWith('/#') ? <a href={l.href}>{l.label}</a> : <Link to={l.href}>{l.label}</Link>}</li>
             ))}
           </ul>
         </nav>
@@ -31,11 +32,12 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="footer__head">Pedidos</h2>
-          <p className="footer__muted">La tienda en línea está en construcción. Mientras tanto, pide tu café por WhatsApp.</p>
-          <a className="btn btn--caramel" href={whatsappLink()} target="_blank" rel="noreferrer">
-            Escribir por WhatsApp <span aria-hidden="true">→</span>
-          </a>
+          <h2 className="footer__head">Compras</h2>
+          <p className="footer__muted">Compra en línea y sigue tu pedido hasta la entrega.</p>
+          <Link className="btn btn--caramel" to="/tienda">
+            Ir a la tienda <span aria-hidden="true">→</span>
+          </Link>
+          <p className="footer__muted"><Link to="/pedido">Seguir mi pedido</Link></p>
         </div>
       </div>
       <div className="container footer__bottom">

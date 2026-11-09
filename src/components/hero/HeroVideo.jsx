@@ -212,6 +212,10 @@ export default function HeroVideo({ introDone, onReady, reducedMotion }) {
       </a>
 
       {heroVideo.isPlaceholder && <span className="hero__notice js-fade">Video provisional</span>}
+
+      <svg className="hero__wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,62 C160,98 340,100 520,70 C700,40 860,14 1040,30 C1220,46 1330,76 1440,58 L1440,101 L0,101 Z" />
+      </svg>
     </section>
   )
 }

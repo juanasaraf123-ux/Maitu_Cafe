@@ -32,16 +32,34 @@
   color: var(--text-on-dark-muted);
 }
 
-/* ---------- Escenario ---------- */
+/* ---------- Escenario: marco con margen y borde inferior en onda ---------- */
 .hero {
+  --frame: clamp(6px, 0.9vw, 14px);           /* margen alrededor del video */
+  --wave-h: clamp(34px, 5.5vw, 86px);         /* alto de la onda inferior */
   position: relative;
-  height: 100vh;
-  height: 100svh;
+  height: calc(100vh - var(--frame));
+  height: calc(100svh - var(--frame));
   min-height: 600px;
+  margin: var(--frame) var(--frame) 0;
+  border-radius: clamp(16px, 2vw, 30px) clamp(16px, 2vw, 30px) 0 0;
   overflow: hidden;
   background: var(--c-cafe-900);
   color: var(--text-on-dark);
+  isolation: isolate;
 }
+/* La onda tiene el color de la página: "recorta" el video con una curva suave. */
+.hero__wave {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: -1px;
+  width: calc(100% + 4px);
+  height: var(--wave-h);
+  display: block;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero__wave path { fill: var(--bg-light); }
 .hero__video {
   position: absolute;
   inset: 0;
@@ -149,13 +167,13 @@
   transition: color var(--dur-fast) var(--ease-out), transform var(--dur-base) var(--ease-out-expo);
 }
 .hero__index button:hover { color: var(--text-on-dark); }
-.hero__index button.is-active { color: var(--c-caramelo-300); transform: scale(1.25); }
+.hero__index button.is-active { color: var(--c-amarillo-300); transform: scale(1.25); }
 
 /* ---------- Letrero de etapa (abajo a la izquierda) ---------- */
 .hero__stage {
   position: absolute;
   left: var(--gutter);
-  bottom: var(--space-6);
+  bottom: calc(var(--wave-h) + var(--space-3));
   width: min(24rem, 40vw);
 }
 .stage__count {
@@ -166,7 +184,7 @@
   text-transform: uppercase;
   color: var(--text-on-dark-muted);
 }
-.stage__count b { color: var(--c-caramelo-300); }
+.stage__count b { color: var(--c-amarillo-300); }
 .stage__title {
   margin: 0;
   font-family: var(--font-display);
@@ -181,13 +199,13 @@
 .stage__caption { margin: var(--space-1) 0 var(--space-3); font-size: var(--fs-small); color: var(--text-on-dark-muted); min-height: 1.5em; }
 .stage__bars { display: flex; gap: 5px; list-style: none; margin: 0; padding: 0; }
 .stage__bars li { flex: 1; height: 2px; border-radius: 2px; background: rgba(246, 240, 230, 0.25); overflow: hidden; }
-.stage__bars i { display: block; height: 100%; background: var(--c-caramelo-300); transform: scaleX(0); transform-origin: left; }
+.stage__bars i { display: block; height: 100%; background: var(--c-amarillo-300); transform: scaleX(0); transform-origin: left; }
 
 /* ---------- Indicador para bajar (mouse) ---------- */
 .hero__scroll {
   position: absolute;
   left: 50%;
-  bottom: var(--space-6);
+  bottom: calc(var(--wave-h) * 0.55 + var(--space-5));
   width: 26px;
   height: 42px;
   margin-left: -13px;
@@ -214,7 +232,7 @@
 .hero__notice {
   position: absolute;
   right: var(--gutter);
-  bottom: var(--space-6);
+  bottom: calc(var(--wave-h) + var(--space-3));
   font-size: 0.64rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -237,12 +255,12 @@
     background:
       linear-gradient(180deg, rgba(18, 12, 8, 0.6) 0%, rgba(18, 12, 8, 0.15) 28%, rgba(18, 12, 8, 0.15) 45%, rgba(18, 12, 8, 0.88) 100%);
   }
-  .hero__content { top: auto; bottom: 11.5rem; transform: none; width: auto; right: var(--gutter); }
+  .hero__content { top: auto; bottom: calc(var(--wave-h) + 10rem); transform: none; width: auto; right: var(--gutter); }
   .hero__title { font-size: clamp(2.7rem, 13vw, 3.6rem); }
   .hero__sub { font-size: 1rem; margin-bottom: var(--space-5); }
   .hero__actions { gap: var(--space-4); }
   .hero__index, .hero__scroll, .hero__notice { display: none; }
-  .hero__stage { width: auto; right: var(--gutter); bottom: var(--space-5); }
+  .hero__stage { width: auto; right: var(--gutter); bottom: calc(var(--wave-h) + var(--space-2)); }
   .stage__title { font-size: 1.6rem; }
   .stage__caption { margin-bottom: var(--space-2); }
 }

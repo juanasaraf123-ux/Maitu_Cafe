@@ -17,7 +17,7 @@
 }
 .nav.is-visible { opacity: 1; transform: none; }
 .nav.is-solid {
-  background: rgba(246, 240, 230, 0.92);
+  background: rgba(251, 246, 239, 0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--text-on-light);
@@ -28,7 +28,7 @@
 .nav__logo img { height: 56px; width: auto; }
 @media (max-width: 767px) { .nav__logo img { height: 48px; } }
 
-.nav__links { display: flex; align-items: center; gap: var(--space-6); }
+.nav__links { display: flex; align-items: center; gap: var(--space-6); margin-left: auto; margin-right: var(--space-5); }
 .nav__links ul { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
 .nav__links ul a {
   color: inherit;
@@ -43,6 +43,34 @@
 .nav__links ul a:hover,
 .nav__links ul a:focus-visible { background-size: 100% 1px; }
 
+.nav__actions { display: flex; align-items: center; gap: var(--space-3); position: relative; z-index: 2; }
+.nav__cart {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.nav__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: var(--c-coral-600);
+  color: #fff;
+  font: 700 0.7rem/20px var(--font-sans);
+  text-align: center;
+}
+.nav__wa { display: none; }
+.nav__links ul a[aria-current='page'] { background-size: 100% 1px; }
 .nav__toggle { display: none; }
 
 @media (max-width: 899px) {
@@ -78,7 +106,7 @@
     align-items: flex-start;
     gap: var(--space-7);
     padding: calc(var(--nav-h) + var(--space-6)) var(--gutter) var(--space-7);
-    background: var(--c-azul-800);
+    background: var(--c-cafe-900);
     color: var(--text-on-brand);
     clip-path: inset(0 0 100% 0);
     visibility: hidden;
@@ -88,5 +116,7 @@
   .nav.is-open { color: var(--text-on-brand); background: transparent; box-shadow: none; backdrop-filter: none; }
   .nav__links ul { flex-direction: column; gap: var(--space-4); }
   .nav__links ul a { font-family: var(--font-display); font-size: clamp(2rem, 9vw, 2.8rem); font-weight: 400; }
-  .nav__cta { align-self: stretch; justify-content: center; }
+  .nav__wa { display: inline-flex; align-self: stretch; justify-content: center; }
+  .nav__shop { display: none; }
+  .nav__links { margin: 0; }
 }

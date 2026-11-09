@@ -1,0 +1,39 @@
+/* Panel de administración: funcional y legible, sin efectos. */
+.admin { min-height: 100vh; background: var(--c-crema-100); }
+.admin--login { display: grid; place-items: center; padding: var(--space-6); }
+.admin--login .card { width: min(380px, 100%); display: grid; gap: var(--space-4); }
+.admin--login h1 { margin: 0; font-family: var(--font-display); font-weight: 400; }
+.admin__bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: var(--space-5); padding: var(--space-3) var(--space-6); background: var(--c-cafe-900); color: var(--c-crema-50); }
+.admin__bar .link-btn { color: var(--c-caramelo-300); margin-left: auto; }
+.admin__tabs { display: flex; gap: var(--space-2); }
+.admin__tabs button { padding: 0.5rem 1rem; border: 0; border-radius: var(--radius-pill); background: transparent; color: inherit; font: 600 var(--fs-small) var(--font-sans); cursor: pointer; }
+.admin__tabs button.is-active { background: var(--c-caramelo-700); }
+.admin__body { padding: var(--space-6); max-width: 1400px; margin: 0 auto; }
+.admin__toolbar { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.admin__toolbar h2 { margin: 0; font-family: var(--font-display); font-weight: 400; }
+.admin__split { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+.admin__detail { display: grid; gap: var(--space-3); position: sticky; top: 80px; }
+.admin__detail h2 { margin: 0; font-family: var(--font-display); font-weight: 400; }
+.admin__detail h3, .admin__product h3 { margin: var(--space-4) 0 var(--space-2); font-size: var(--fs-small); text-transform: uppercase; letter-spacing: 0.12em; }
+.admin__status { display: grid; gap: var(--space-3); padding: var(--space-4); background: var(--c-crema-50); border-radius: var(--radius-md); }
+.admin__events { margin: 0; padding-left: 1.2rem; font-size: var(--fs-small); display: grid; gap: var(--space-1); }
+.table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius-md); overflow: hidden; font-size: var(--fs-small); }
+.table th, .table td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid var(--line-on-light); vertical-align: middle; }
+.table th { background: var(--c-beige-200); font-weight: 700; }
+.table td small { display: block; color: var(--text-on-light-muted); }
+.table tbody tr { cursor: pointer; }
+.table tbody tr:hover, .table tr.is-selected { background: var(--c-crema-50); }
+.table input[type='number'] { width: 110px; padding: 0.4rem 0.5rem; border: 1px solid var(--c-beige-300); border-radius: 6px; font: inherit; }
+.pill { display: inline-block; padding: 0.2rem 0.6rem; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 700; background: var(--c-beige-200); }
+.pill--pagado, .pill--alistando, .pill--empacado { background: rgba(0, 92, 103, 0.12); color: var(--c-teal-700); }
+.pill--enviado { background: rgba(31, 75, 127, 0.12); color: var(--c-azul-700); }
+.pill--entregado { background: var(--c-teal-700); color: #fff; }
+.pill--pendiente_pago { background: rgba(242, 207, 126, 0.5); }
+.pill--pago_rechazado, .pill--cancelado { background: rgba(194, 74, 53, 0.12); color: var(--c-coral-700); }
+.admin__product { margin-bottom: var(--space-4); }
+.admin__product summary { cursor: pointer; font-size: 1.1rem; display: flex; gap: var(--space-3); align-items: center; }
+.admin__product .form-grid { margin: var(--space-4) 0; }
+.admin__inline { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-top: var(--space-3); font-size: var(--fs-small); }
+.admin__inline input, .admin__inline select { padding: 0.45rem 0.6rem; border: 1px solid var(--c-beige-300); border-radius: 6px; font: inherit; width: 110px; }
+.admin__new, .admin__shipping { display: grid; gap: var(--space-4); max-width: 520px; }
+@media (max-width: 1000px) { .admin__split { grid-template-columns: 1fr; } .admin__detail { position: static; } }

@@ -1,58 +1,76 @@
 # Maitú Café — Del origen a tu taza
 
-Sitio web de **Maitú Café** (by Nicolas Bernal): un inicio con video a pantalla completa
-que muestra el recorrido del café de la mata a la taza, contenido de marca y, después, la tienda.
+Sitio web y tienda virtual de **Maitú Café** (by Nicolas Bernal): inicio con video,
+historia, proceso, preparación y **tienda con carrito, pagos con Wompi (PSE, tarjetas,
+Nequi) y seguimiento de pedidos**.
 
-**Stack:** React 19 · Vite · GSAP + ScrollTrigger · Lenis · CSS. Three.js / React Three
-Fiber se agregan en la Etapa 5.
+**Stack:** React 19 · Vite · React Router · GSAP · Lenis · Node 22 + Express 5 · SQLite
+(integrado en Node) · Wompi.
 
 ## Ejecutar
 
 ```bash
 npm install
-npm run dev        # desarrollo en http://localhost:5173
-npm run build      # versión de producción en dist/
-npm run preview    # sirve dist/ en http://localhost:4173
+```
+
+```bash
+cp .env.example .env
+```
+
+```bash
+npm run dev
+```
+
+Abre la web en `http://localhost:5173`. La API corre en el puerto 8787 y el panel está en `/admin`.
+
+Para probar la tienda con datos de ejemplo (base de datos aparte, marcada como prueba):
+
+```bash
+npm run seed:demo
+```
+
+```bash
+DB_PATH=data/demo.db DEMO_MODE=1 npm run dev
+```
+
+Producción:
+
+```bash
+npm run build
+```
+
+```bash
+npm run start
 ```
 
 ## Estado
 
 | Etapa | | Estado |
 |---|---|---|
-| 1 | Identidad visual (con la marca real) | ✅ |
-| 2 | Proyecto React + Vite | ✅ |
-| 3 | Inicio: apertura + video a pantalla completa con letrero de etapa | ✅ Funcional, con video **provisional** |
-| 4 | Animaciones GSAP (entradas, letrero, apariciones al hacer scroll) | ✅ Base lista |
+| 1 | Identidad visual | ✅ Paleta v3: café oscuro, caramelo, crema + acentos del manual y el empaque |
+| 2 | React + Vite | ✅ |
+| 3 | Inicio | ✅ Video en marco con borde en onda, letrero de etapa, índice 01–08 · video **provisional** |
+| 4 | Animaciones GSAP | ✅ |
 | 5 | Elementos 3D | Pendiente |
-| 6 | Historia, origen y procesos | Parcial: historia y recetas reales; faltan fincas y procesos |
-| 7 | Catálogo y tienda | Pendiente (hoy: pedidos por WhatsApp) |
-| 8 | Responsive | Base lista (composición móvil propia) |
-| 9 | Optimización y pruebas | Pendiente |
+| 6 | Historia, proceso, preparación | ✅ Con datos reales; faltan fincas y procesos |
+| 7 | Tienda | ✅ Catálogo, ficha, carrito, pago Wompi, seguimiento, panel · **faltan precios reales y llaves de Wompi** |
+| 8 | Responsive | ✅ Base |
+| 9 | Optimización y pruebas | Parcial: pruebas de la tienda listas |
 
 ## Estructura
 
 ```
-public/brand/            Logos oficiales en SVG (extraídos del .ai)
-public/media/hero/       Video del inicio (provisional hoy, real después) y póster
-public/media/historia/   Foto real de Nicolas
-scripts/                 Generar el video provisional · optimizar el video real
-src/content/             Textos y datos editables (marca, recetas, recorrido, menú)
-src/animations/          GSAP y scroll suave
-src/components/hero/     Apertura y video del inicio con letrero de etapa
-src/components/sections/ Historia, Preparación
-src/components/layout/   Menú, pie de página
-src/hooks/               Movimiento reducido, media queries, apariciones
-src/styles/              Tokens de diseño y estilos globales
-docs/                    Identidad, técnica del inicio, multimedia, datos pendientes
+server/                  API: catálogo, pedidos, Wompi, panel (Express + SQLite)
+  routes/store.js        Rutas públicas · routes/admin.js: panel
+  orders.js · wompi.js   Lógica de pedidos y pagos
+data/                    Base de datos (no se sube al repositorio)
+public/brand/            Logos oficiales en SVG
+public/media/            Video del inicio, foto de Nicolas, empaque
+src/pages/               Inicio, Tienda, Ficha, Pago, Pedido, Panel
+src/components/          hero/, sections/, shop/, layout/, admin/
+src/store/               Carrito y configuración de la tienda
+src/content/             Textos y datos editables de la marca
+docs/                    Identidad, inicio, multimedia, datos pendientes, tienda
 ```
 
-## Integrar el video real del inicio
-
-```bash
-npm run video:optimize -- ruta/al/video.mp4
-```
-
-Luego, en `src/content/hero.js`, cambiar `VIDEOS.placeholder` por `VIDEOS.recorrido`
-y ajustar el segundo en que empieza cada etapa.
-
-> Todo lo marcado como **PLACEHOLDER** o **⚠** debe reemplazarse con material real de la marca.
+Ver **`docs/05-tienda.md`** para activar Wompi, usar el panel y publicar.

@@ -6,56 +6,65 @@
    ========================================================================== */
 
 :root {
-  /* ---------- Paleta de marca ---------- */
-  /* Azul Maitú — fondo del empaque (#1F4B7F medido en el arte del empaque) */
-  --c-azul-900: #0f2a48;
+  /* ---------- Paleta (v3: elegida por la marca) ----------
+     Base: café oscuro + caramelo + crema.
+     Acentos del manual y del empaque: verde azulado del logo, coral, amarillo
+     y azul del empaque, en dosis pequeñas y con un papel fijo cada uno. */
+
+  /* Café oscuro — fondos oscuros, texto principal */
+  --c-cafe-950: #1a100b;
+  --c-cafe-900: #24160f;   /* marco del inicio, pie de página */
+  --c-cafe-800: #3a251a;
+  --c-cafe-700: #4a2e1f;
+  --c-cafe-600: #6f5848;   /* texto secundario sobre claro (6.2:1) */
+
+  /* Caramelo — acción principal */
+  --c-caramelo-700: #94592a; /* botones (blanco encima 5.6:1), texto sobre crema */
+  --c-caramelo-500: #b9783f;
+  --c-caramelo-300: #e3b98a; /* acento sobre café (9.7:1) */
+
+  /* Crema — fondos claros */
+  --c-crema-50: #fbf6ef;   /* fondo principal */
+  --c-crema-100: #f6eee2;
+  --c-beige-200: #f3e8d8;  /* secciones alternas, tarjetas */
+  --c-beige-300: #e6d5bd;
+
+  /* Acentos del manual de marca */
+  --c-teal-700: #005c67;   /* verde azulado del logo: "disponible", enlaces, seguimiento */
+  --c-teal-300: #7fd0c9;   /* teal claro sobre café */
+  --c-coral-500: #d26853;  /* coral del manual: decoración */
+  --c-coral-600: #c24a35;  /* coral del empaque: insignia del carrito, "agotado" */
+  --c-coral-700: #b8432f;  /* coral para texto sobre crema (5:1) */
+  --c-amarillo-300: #f2cf7e; /* amarillo del manual: etapa activa, "pocas unidades" */
+
+  /* Azul del empaque — pago y confianza */
+  --c-azul-700: #1f4b7f;   /* botón de pagar, panel del producto */
   --c-azul-800: #163a63;
-  --c-azul-700: #1f4b7f;   /* azul empaque: tienda, botones de compra */
-  --c-azul-300: #a9c7ea;   /* azul claro del patrón: detalles sobre oscuro */
-  --c-azul-100: #dfe9f5;
+  --c-azul-900: #0f2a48;
 
-  /* Café — la animación del recorrido vive sobre estos tonos */
-  --c-cafe-950: #120c08;
-  --c-cafe-900: #1a120d;   /* fondo del hero */
-  --c-cafe-800: #2a1c14;   /* texto principal sobre claro (14.5:1) */
-  --c-cafe-600: #6e5444;   /* texto secundario sobre claro (6.2:1) */
-  --c-cafe-400: #a07a5c;   /* decorativo */
-  --c-caramelo-300: #d9a86c; /* acento cálido sobre café (titular, etapa activa) */
-  --c-caramelo-600: #8a5a33; /* caramelo para texto sobre claro */
+  /* Alias usados por componentes anteriores */
+  --c-caramelo-600: var(--c-caramelo-700);
+  --c-azul-300: var(--c-teal-300);
+  --c-amarillo-400: var(--c-amarillo-300);
 
-  /* Beige / crema — secciones claras */
-  --c-crema-50:  #fbf8f3;
-  --c-crema-100: #f6f0e6;  /* fondo claro principal */
-  --c-beige-200: #e8dcc8;
-  --c-beige-300: #d8c7aa;
-
-  /* Acentos del manual y del empaque (uso puntual) */
-  --c-coral-500: #e9573f;  /* "Ú" del logo, cereza. Sobre claro solo ≥ 24px */
-  --c-coral-700: #c2412b;  /* coral para texto pequeño sobre claro (4.5:1) */
-  --c-amarillo-400: #f2b33d; /* amarillo del empaque: datos en vivo, detalles */
-  --c-teal-logo: #005c67;  /* verde azulado del logotipo: solo el logo */
-
-  /* ---------- Roles semánticos ---------- */
+  /* ---------- Roles ---------- */
   --bg-dark: var(--c-cafe-900);
-  --bg-light: var(--c-crema-100);
+  --bg-light: var(--c-crema-50);
   --bg-light-alt: var(--c-beige-200);
   --bg-brand: var(--c-azul-700);
 
-  --text-on-dark: var(--c-crema-100);
-  --text-on-dark-muted: rgba(246, 240, 230, 0.72);
-  --text-on-light: var(--c-cafe-800);
+  --text-on-dark: var(--c-crema-50);
+  --text-on-dark-muted: rgba(251, 246, 239, 0.74);
+  --text-on-light: var(--c-cafe-900);
   --text-on-light-muted: var(--c-cafe-600);
-  --text-on-brand: var(--c-crema-100);
+  --text-on-brand: var(--c-crema-50);
 
-  --accent-on-dark: var(--c-azul-300);
-  --accent-on-light: var(--c-azul-700);
-  --line-on-dark: rgba(246, 240, 230, 0.18);
-  --line-on-light: rgba(42, 28, 20, 0.14);
+  --accent-on-dark: var(--c-caramelo-300);
+  --accent-on-light: var(--c-caramelo-700);
+  --line-on-dark: rgba(251, 246, 239, 0.18);
+  --line-on-light: rgba(36, 22, 15, 0.12);
 
-  --focus-ring: 0 0 0 2px var(--c-crema-100), 0 0 0 4px var(--c-azul-700);
-
-  --veil-left: linear-gradient(90deg, rgba(18, 12, 8, 0.72) 0%, rgba(18, 12, 8, 0.25) 45%, rgba(18, 12, 8, 0) 70%);
-  --veil-bottom: linear-gradient(180deg, rgba(18, 12, 8, 0) 40%, rgba(18, 12, 8, 0.7) 100%);
+  --focus-ring: 0 0 0 2px var(--c-crema-50), 0 0 0 4px var(--c-teal-700);
 
   /* ---------- Tipografía ----------
      Manual: Peachy Woman (títulos) + Open Sans (texto).

@@ -27,7 +27,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
-  color: var(--c-caramelo-600);
+  color: var(--c-teal-700);
 }
 .section__title {
   font-family: var(--font-display);
@@ -129,7 +129,7 @@
   transition: transform var(--dur-base) var(--ease-out-expo);
 }
 .recipe:hover { transform: translateY(-4px); }
-.recipe__note { margin: 0; font-size: var(--fs-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--c-azul-700); font-weight: 600; }
+.recipe__note { margin: 0; font-size: var(--fs-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--c-teal-700); font-weight: 600; }
 .recipe__method { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h3); margin: var(--space-3) 0 var(--space-6); }
 .recipe__data { display: flex; justify-content: space-between; gap: var(--space-4); margin: 0 0 var(--space-5); }
 .recipe__data dt { font-size: var(--fs-eyebrow); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-on-light-muted); }

@@ -1,4 +1,13 @@
-# Etapa 1 · Identidad visual (versión 2, con la marca real)
+# Etapa 1 · Identidad visual (versión 3)
+
+> **v3 (actual):** la marca pidió "café oscuro, caramelo, crema, los colores del manual
+> y del empaque, algo de todo un poco". Base: café oscuro + caramelo + crema. Acentos con
+> papel fijo: verde azulado del logo (títulos pequeños, "disponible", seguimiento), coral
+> (carrito, "agotado"), amarillo del manual (etapa activa, "últimas unidades") y azul del
+> empaque (botón de pagar, panel del producto). Valores en `src/styles/tokens.css`.
+> La tabla de la sección 2 corresponde a la v2 y queda como historial.
+
+## Historial: versión 2
 
 > La primera propuesta (verde bosque y dorado) fue descartada por la marca.
 > Esta versión parte del **Manual de Marca Maitú**, del **arte del empaque** y de
