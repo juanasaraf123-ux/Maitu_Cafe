@@ -1,87 +1,78 @@
-# Inicio cinematográfico · cómo funciona (versión 2)
+# Inicio · video a pantalla completa (versión 3)
 
-> Cambio respecto a la primera propuesta: después de ver las referencias de la
-> marca se reemplazaron los clips en bucle con cortes por **una sola toma continua
-> controlada por el scroll**, como en esas referencias.
+> Historial: v1 eran clips con cortes; v2, un recorrido fijo controlado por el
+> scroll. **v3 (actual, pedida por la marca):** el video se reproduce solo, a
+> pantalla completa, sin tener que hacer scroll. El visitante no se pierde: la
+> página se desplaza con normalidad.
 
 ## 1. La experiencia
 
-1. **Apertura** (`HeroIntro`): pantalla café, el logo blanco se revela de izquierda a
-   derecha y la cortina sube. Se salta con clic, tecla o scroll. En visitas siguientes
-   dura ~1 s (`sessionStorage`).
-2. **Titular**: "Todo comienza / *mucho antes* / del primer sorbo." entra línea por
-   línea, con el botón **Descubrir el recorrido**, que lleva a la etapa 02.
-3. **Recorrido** (`HeroFilm`): la pantalla se fija y el scroll hace avanzar o
-   retroceder un video continuo, desde la mata hasta la taza, en ocho etapas:
+1. **Apertura** (`HeroIntro`): pantalla café, el logo blanco se revela y la cortina
+   sube. Se salta con clic, tecla o scroll. En visitas siguientes dura ~1 s.
+2. **Inicio** (`HeroVideo`):
+   - Video a pantalla completa, en bucle y sin sonido, que se reproduce solo.
+     Llena la pantalla sin deformarse (`object-fit: cover`) y tiene una versión vertical
+     para el celular.
+   - Al centro: "Café de Colombia · by Nicolas Bernal", el **logo Maitú** grande, el
+     titular "Todo comienza *mucho antes* del primer sorbo." y los botones
+     *Conoce nuestra historia* y *Pedir por WhatsApp*.
+   - **Abajo a la izquierda, el letrero de la etapa** que se está viendo, como en la
+     referencia de la marca: "04 / 08 · El recorrido", la etapa en grande
+     ("El secado."), una frase corta y 8 barritas que se llenan con el video.
+   - Abajo a la derecha: botón Pausar / Reproducir (accesibilidad).
+3. Al bajar se ve **Nuestra historia**, **Preparación** y **Contacto**. El video se
+   pausa cuando sale de la pantalla y se reanuda al volver.
 
-| # | Etapa | Texto en pantalla | Datos |
+| # | Etapa | Frase del letrero | Empieza en (video provisional) |
 |---|---|---|---|
-| 01 | La mata | Titular principal + "Café de Colombia, de la finca a tu taza." | — |
-| 02 | La cosecha | En la finca, la cereza madura se coge a mano, directo de la mata. | — |
-| 03 | El beneficio | Se despulpa y se lava: del fruto queda el grano. | ⚠ Confirmar el proceso real |
-| 04 | El secado | El sol y el tiempo hacen su parte. | — |
-| 05 | El grano | Lo esencial del fruto, listo para el tueste. | — |
-| 06 | La molienda | Justo antes de preparar, para no perder el aroma. | 25 g · molienda media (empaque) |
-| 07 | El filtrado | Agua, tiempo y paciencia. | **En vivo**: 0 → 380 ml y 0:00 → 3:30 (receta del empaque) |
-| 08 | Tu taza | Del origen a tu taza. | Botones: Nuestra historia · Pedir por WhatsApp |
+| 01 | La mata | Donde todo comienza, en la finca. | 0 s |
+| 02 | La cosecha | La cereza madura se coge a mano. | 2 s |
+| 03 | El beneficio | Cada café tiene su propio proceso. | 4 s |
+| 04 | El secado | El sol y el tiempo hacen su parte. | 6 s |
+| 05 | El grano | Lo esencial del fruto. | 8 s |
+| 06 | La molienda | 25 g · molienda media. (receta del empaque) | 10 s |
+| 07 | El filtrado | 380 ml de agua · 3:30 min. (receta del empaque) | 12 s |
+| 08 | Tu taza | Del origen a tu taza. | 14 s |
 
-Recorrido confirmado por la marca, en 8 etapas.
-
-Textos editables en `src/content/hero.js`. Son textos de la web, no datos técnicos.
-
-4. Al terminar, la página se suelta y continúa con **Nuestra historia**,
-   **Preparación** y **Contacto**.
-
-Siempre visibles durante el recorrido: índice 01–08 en el que se puede hacer clic
-(en móvil, contador compacto), barra de progreso azul y el aviso de animación
-provisional mientras no exista el video real.
+Todo se edita en `src/content/hero.js`. `start` es el segundo del video en que cambia
+el letrero.
 
 ## 2. Técnica
 
-**Secuencia de imágenes en `<canvas>`** (`src/animations/frameSequence.js`). El video
-se convierte en cuadros WebP y se dibuja el cuadro que corresponde al scroll. Es más
-fluido que mover un `<video>` con el scroll, sobre todo en iPhone.
+- `<video autoplay muted loop playsinline>`: los navegadores permiten la reproducción
+  automática solo si el video no tiene sonido.
+- El letrero se sincroniza leyendo `video.currentTime` en cada cuadro de animación
+  (`requestAnimationFrame`) mientras el video corre. El texto cambia con una máscara
+  (GSAP) y las barras se llenan con `transform: scaleX`, que es barato para la GPU.
+- `IntersectionObserver` pausa el video fuera de pantalla (ahorra batería y datos).
+- **Movimiento reducido:** no hay apertura y el video no arranca solo; queda el póster
+  con el botón Reproducir.
 
-- Carga progresiva: primero el cuadro 1; después uno de cada 8, de cada 4, de cada 2 y
-  el resto. Si el usuario baja rápido, se dibuja el cuadro cargado más cercano.
-- Ajuste tipo *cover*: llena la pantalla sin deformarse; en móvil recorta al centro.
-- Resolución limitada a 2× para no gastar memoria.
+## 3. El video con inteligencia artificial
 
-**Un solo timeline de GSAP** (`src/animations/heroTimeline.js`) con ScrollTrigger
-(`pin` + `scrub: 0.8`). Una unidad de tiempo equivale a un capítulo y anima a la vez:
-cuadro del video, acercamiento sutil de cámara, textos (máscaras de línea),
-datos en vivo y barra de progreso. Cada capítulo tiene la etiqueta `ch-N`, que usa el
-índice para saltar.
+Hoy se usa un video **provisional** (`npm run video:placeholder`, 16 s, 460 KB) con la
+etiqueta "PLACEHOLDER".
 
-**Lenis** (scroll suave) sincronizado con el reloj de GSAP; desactivado con
-*reducir movimiento*.
+Recomendaciones para el video final:
 
-## 3. El video del recorrido
-
-Es lo único que falta para que el inicio sea el definitivo. Hoy se usan 112 cuadros
-**provisionales** (`npm run frames:placeholder`), marcados con la etiqueta
-"PLACEHOLDER".
-
-Requisitos del video final:
-
-- Una sola toma continua (o tomas unidas sin cortes visibles) que pase por las 8 etapas:
-  mata → cosecha → beneficio → secado → grano → molienda → filtrado → taza.
-- 10–20 s, 24–30 fps, 4K o 1080p, sin audio.
-- Encuadre con aire en el centro, para poder recortar la versión vertical del móvil.
-- Zona izquierda e inferior más tranquila: ahí va el texto.
+- 8 clips cortos (2–4 s cada uno), uno por etapa, con la misma luz y paleta, unidos
+  con fundidos. Total: 16–30 s, en bucle.
+- Formato horizontal 16:9 (4K o 1080p) con el centro despejado, para recortar la
+  versión vertical. Sin texto ni logos dentro del video: los pone la página.
+- Zona central y abajo a la izquierda más oscura o tranquila: ahí van el logo y el
+  letrero.
+- Sin máquinas de espresso; el filtrado es manual (gotero cónico).
 
 Para integrarlo:
 
 ```bash
-npm run frames:video -- ruta/al/recorrido.mp4 180 120
+npm run video:optimize -- ruta/al/video.mp4
 ```
 
-Después, en `src/content/hero.js`, cambiar `heroFrames = SETS.placeholder` por
-`SETS.recorrido`. Los cuadros de escritorio pesan ~25–40 KB cada uno (≈5–7 MB en total,
-cargados de forma progresiva).
+Luego, en `src/content/hero.js`: `heroVideo = VIDEOS.recorrido` y ajustar el `start`
+de cada etapa a los segundos reales del video.
 
-## 4. Pendiente (Etapas 4–5)
+## 4. Pendiente
 
-- Transiciones de color entre capítulos sincronizadas con el video real.
-- Elemento 3D (grano de café con React Three Fiber) en la transición grano → molienda,
-  con alternativa 2D para equipos sin WebGL.
+- Selector de procesos (lavado, honey, natural…) en la sección "El proceso" (Etapa 6).
+- Elemento 3D (grano de café) en la sección de proceso o de cafés (Etapa 5).

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Recorrido cinematográfico (HeroFilm) + apertura (HeroIntro)
+   Inicio: apertura (HeroIntro) + video a pantalla completa (HeroVideo)
    ========================================================================== */
 
 /* ---------- Apertura ---------- */
@@ -14,11 +14,7 @@
   background: var(--c-cafe-900);
   cursor: pointer;
 }
-.intro__logo {
-  width: min(56vw, 360px);
-  height: auto;
-  clip-path: inset(0 100% 0 0);
-}
+.intro__logo { width: min(56vw, 360px); height: auto; clip-path: inset(0 100% 0 0); }
 .intro__line {
   display: block;
   width: min(40vw, 220px);
@@ -37,225 +33,174 @@
 }
 
 /* ---------- Escenario ---------- */
-.film {
+.hero {
   position: relative;
   height: 100vh;
   height: 100svh;
+  min-height: 560px;
   overflow: hidden;
   background: var(--c-cafe-900);
   color: var(--text-on-dark);
 }
-.film__canvas {
+.hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover; /* llena la pantalla sin deformarse */
   display: block;
-  z-index: var(--z-film);
-  will-change: transform;
 }
-.film__veil {
+.hero__veil {
   position: absolute;
   inset: 0;
-  z-index: calc(var(--z-film) + 1);
-  background: linear-gradient(180deg, rgba(18, 12, 8, 0.5) 0%, rgba(18, 12, 8, 0) 20%), var(--veil-left), var(--veil-bottom);
+  background:
+    linear-gradient(180deg, rgba(18, 12, 8, 0.55) 0%, rgba(18, 12, 8, 0) 22%),
+    radial-gradient(ellipse 60% 55% at 50% 48%, rgba(18, 12, 8, 0.5) 0%, rgba(18, 12, 8, 0) 70%),
+    linear-gradient(0deg, rgba(18, 12, 8, 0.75) 0%, rgba(18, 12, 8, 0) 38%);
   pointer-events: none;
 }
 
-/* ---------- Textos de capítulo ---------- */
-.film__chapters {
+/* Elementos que entran al terminar la apertura */
+.hero .js-fade, .hero__brand { opacity: 0; visibility: hidden; }
+
+/* ---------- Centro: nombre Maitú + titular ---------- */
+.hero__center {
   position: absolute;
   inset: 0;
-  z-index: var(--z-film-ui);
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--nav-h) var(--gutter) 9rem;
 }
-.chapter {
+.hero__eyebrow {
+  margin: 0 0 var(--space-5);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-azul-300);
+}
+.hero__brand { margin: 0 0 var(--space-5); line-height: 0; }
+.hero__brand img {
+  width: clamp(220px, 26vw, 420px);
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.35));
+}
+.hero__headline {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 144;
+}
+.hero__headline .mask { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.12em 0.1em; margin-bottom: -0.1em; }
+.hero__headline .js-line { display: inline-block; }
+.hero__headline .is-accent { font-style: italic; color: var(--c-azul-300); }
+.hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+
+/* ---------- Letrero de etapa (abajo a la izquierda) ---------- */
+.hero__stage {
   position: absolute;
   left: var(--gutter);
-  bottom: clamp(5.5rem, 14vh, 10rem);
-  width: min(42rem, calc(100% - 2 * var(--gutter)));
-  visibility: hidden;
-  opacity: 0;
+  bottom: var(--space-7);
+  width: min(30rem, 46vw);
 }
-.chapter--intro { visibility: visible; opacity: 1; }
-.chapter a, .chapter button { pointer-events: auto; }
-
-.chapter__eyebrow {
-  display: flex;
-  gap: 0.75em;
-  margin: 0 0 var(--space-5);
+.stage__count {
+  margin: 0 0 var(--space-2);
   font-size: var(--fs-eyebrow);
   font-weight: 600;
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--text-on-dark-muted);
 }
-.chapter__eyebrow span { color: var(--accent-on-dark); }
-
-.mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-.mask > .js-line { display: block; will-change: transform; }
-
-.chapter__display {
-  margin: 0 0 var(--space-5);
+.stage__count b { color: var(--c-azul-300); }
+.stage__title {
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--fs-display);
-  line-height: var(--lh-tight);
+  font-size: clamp(2.2rem, 1.4rem + 2.8vw, 4.4rem);
+  line-height: 1.02;
   letter-spacing: -0.02em;
   font-variation-settings: 'opsz' 144;
 }
-.chapter__display .is-accent { font-style: italic; color: var(--c-azul-300); }
-
-.chapter__title {
-  margin: 0 0 var(--space-5);
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: var(--fs-h1);
-  line-height: var(--lh-heading);
-  letter-spacing: -0.015em;
-  font-variation-settings: 'opsz' 144;
-}
-.chapter__sub {
-  margin: 0 0 var(--space-6);
-  font-size: var(--fs-lead);
+.mask { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.stage__title .js-stage { display: block; }
+.stage__caption {
+  margin: var(--space-2) 0 var(--space-4);
+  font-size: var(--fs-small);
   color: var(--text-on-dark-muted);
-  max-width: 34ch;
+  min-height: 1.5em;
 }
-.chapter__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.stage__bars { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.stage__bars li { flex: 1; height: 3px; border-radius: 2px; background: rgba(246, 240, 230, 0.25); overflow: hidden; }
+.stage__bars i { display: block; height: 100%; background: var(--c-azul-300); transform: scaleX(0); transform-origin: left; }
 
-/* Datos (molienda) y datos en vivo (filtrado) */
-.chapter__data {
-  display: flex;
-  gap: var(--space-7);
-  margin: 0;
-}
-.chapter__data dt {
-  font-size: var(--fs-eyebrow);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--text-on-dark-muted);
-  margin-bottom: var(--space-2);
-}
-.chapter__data dd {
-  margin: 0;
-  font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3.4rem);
-  font-weight: 300;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-.chapter__data--live dd { color: var(--c-amarillo-400); min-width: 4.2ch; }
-
-/* ---------- UI fija: índice, progreso, aviso ---------- */
-.film__ui { position: absolute; inset: 0; z-index: var(--z-film-ui); pointer-events: none; }
-.film__ui > * { pointer-events: auto; }
-
-.chapter-index {
+/* ---------- Controles (abajo a la derecha) ---------- */
+.hero__controls {
   position: absolute;
   right: var(--gutter);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.chapter-index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.chapter-index button {
+  bottom: var(--space-7);
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+.hero__play {
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 0.45rem 0;
-  background: none;
-  border: 0;
-  color: var(--text-on-dark-muted);
+  gap: 0.6em;
+  padding: 0.6em 1em;
+  border: 1px solid rgba(246, 240, 230, 0.4);
+  border-radius: var(--radius-pill);
+  background: rgba(18, 12, 8, 0.25);
+  color: var(--text-on-dark);
   font: 600 0.72rem/1 var(--font-sans);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color var(--dur-fast) var(--ease-out);
+  backdrop-filter: blur(6px);
 }
-.chapter-index button { position: relative; }
-.chapter-index__name {
-  position: absolute;
-  right: calc(100% + 0.75rem);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(8px);
-  transition: opacity var(--dur-base) var(--ease-out-expo), transform var(--dur-base) var(--ease-out-expo);
-}
-.chapter-index__num::after {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-  width: 14px;
-  height: 1px;
-  margin-left: 10px;
-  background: currentColor;
-  transition: width var(--dur-base) var(--ease-out-expo);
-}
-.chapter-index button:hover,
-.chapter-index button:focus-visible,
-.chapter-index button.is-active { color: var(--text-on-dark); }
-.chapter-index button:hover .chapter-index__name,
-.chapter-index button:focus-visible .chapter-index__name,
-.chapter-index button.is-active .chapter-index__name { opacity: 1; transform: none; }
-.chapter-index button.is-active .chapter-index__num { color: var(--accent-on-dark); }
-.chapter-index button.is-active .chapter-index__num::after { width: 32px; }
-.chapter-index button:focus-visible { outline: 1px solid var(--accent-on-dark); outline-offset: 4px; }
-.chapter-index__compact { display: none; }
-
-.film__progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: rgba(246, 240, 230, 0.12);
-}
-.film__progress span {
-  display: block;
-  height: 100%;
-  background: var(--c-azul-300);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-.film__notice {
-  position: absolute;
-  left: var(--gutter);
-  bottom: var(--space-5);
-  margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+.hero__play:hover { border-color: var(--c-crema-100); }
+.hero__play span { font-size: 0.7rem; letter-spacing: 0; }
+.hero__notice {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-on-dark-muted);
   border: 1px dashed var(--line-on-dark);
-  padding: 0.3rem 0.6rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
 
-/* ---------- Móvil: composición propia ---------- */
+/* ---------- Móvil ---------- */
 @media (max-width: 767px) {
-  .film__veil {
-    background: linear-gradient(180deg, rgba(18, 12, 8, 0.35) 0%, rgba(18, 12, 8, 0) 30%, rgba(18, 12, 8, 0.82) 72%);
+  .hero__veil {
+    background:
+      linear-gradient(180deg, rgba(18, 12, 8, 0.55) 0%, rgba(18, 12, 8, 0) 20%),
+      radial-gradient(ellipse 90% 45% at 50% 42%, rgba(18, 12, 8, 0.5) 0%, rgba(18, 12, 8, 0) 75%),
+      linear-gradient(0deg, rgba(18, 12, 8, 0.85) 0%, rgba(18, 12, 8, 0) 45%);
   }
-  .chapter { bottom: 6.5rem; }
-  .chapter__display { font-size: clamp(2.5rem, 11vw, 3.6rem); }
-  .chapter__title { font-size: clamp(1.9rem, 8.4vw, 2.6rem); }
-  .chapter__data { gap: var(--space-6); }
-  .chapter__actions .btn { flex: 1 1 auto; justify-content: center; }
-
-  .chapter-index { top: auto; bottom: 3.6rem; right: auto; left: var(--gutter); transform: none; }
-  .chapter-index ol { display: none; }
-  .chapter-index__compact {
-    display: block;
-    margin: 0;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-on-dark-muted);
-  }
-  .chapter-index__compact b { color: var(--accent-on-dark); }
-  .film__notice { bottom: 0.9rem; font-size: 0.62rem; }
+  .hero__center { justify-content: flex-start; padding-top: calc(var(--nav-h) + 9vh); padding-bottom: 0; }
+  .hero__brand img { width: min(62vw, 260px); }
+  .hero__headline { font-size: clamp(1.45rem, 6.4vw, 1.9rem); }
+  .hero__actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 340px; }
+  .hero__actions .btn { justify-content: center; }
+  .hero__stage { width: auto; right: var(--gutter); bottom: var(--space-5); }
+  .stage__title { font-size: clamp(2rem, 9vw, 2.6rem); }
+  /* El botón de pausa queda a la derecha, en la línea del contador de etapa. */
+  .hero__controls { bottom: calc(var(--space-5) + 6.6rem); }
+  .hero__play { padding: 0.55em 0.75em; }
+  .hero__play-label, .hero__notice { display: none; }
+}
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero__center { padding-top: calc(var(--nav-h) + 3vh); }
+  .hero__eyebrow { display: none; }
 }
 
-/* ---------- Movimiento reducido: sin cortina ni máscaras ---------- */
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none; }
 }

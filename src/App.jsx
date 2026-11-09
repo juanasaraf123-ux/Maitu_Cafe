@@ -5,8 +5,7 @@ import { useReducedMotion } from './hooks/useReducedMotion.js'
 import Navbar from './components/layout/Navbar.jsx'
 import Footer from './components/layout/Footer.jsx'
 import HeroIntro from './components/hero/HeroIntro.jsx'
-import HeroFilm from './components/hero/HeroFilm.jsx'
-import HeroStatic from './components/hero/HeroStatic.jsx'
+import HeroVideo from './components/hero/HeroVideo.jsx'
 import StorySection from './components/sections/StorySection.jsx'
 import PrepSection from './components/sections/PrepSection.jsx'
 
@@ -46,11 +45,11 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#historia">Saltar el recorrido</a>
+      <a className="skip-link" href="#historia">Saltar al contenido</a>
       {!reducedMotion && !introDone && <HeroIntro ready={firstFrame} onDone={onIntroDone} />}
       <Navbar visible={introDone} />
       <main>
-        {reducedMotion ? <HeroStatic /> : <HeroFilm introDone={introDone} onFirstFrame={onFirstFrame} />}
+        <HeroVideo introDone={introDone} onReady={onFirstFrame} reducedMotion={reducedMotion} />
         <StorySection />
         <PrepSection />
       </main>

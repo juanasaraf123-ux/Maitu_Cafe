@@ -81,8 +81,8 @@ Contraste verificado (WCAG 2.1, mínimo 4.5:1 para texto normal):
 |---|---|---|
 | Micro (hover, foco) | 180 ms | `power2.out` |
 | Entrada de texto | 0.9–1.2 s, escalonado | `expo.out` |
-| Recorrido | Ligado al scroll (`scrub: 0.8`) | lineal |
+| Letrero de etapa | 0.8 s, sincronizado con el video | `expo.out` |
 | Apertura | ~2.8 s (≈1 s en visitas siguientes) | `power3.inOut` / `expo.inOut` |
 
-Con *reducir movimiento* activado: sin apertura, sin pantalla fija ni scroll suave;
-el recorrido se muestra como bloques estáticos.
+Con *reducir movimiento* activado: sin apertura ni scroll suave, y el video no arranca
+solo (queda el botón Reproducir).

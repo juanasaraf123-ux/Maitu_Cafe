@@ -8,8 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "frames:placeholder": "python3 scripts/generate-placeholder-frames.py",
-    "frames:video": "bash scripts/video-to-frames.sh"
+    "video:placeholder": "python3 scripts/generate-placeholder-video.py",
+    "video:optimize": "bash scripts/optimize-video.sh"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.5",
