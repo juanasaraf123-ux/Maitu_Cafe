@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, useGSAP } from '../../animations/gsap.js'
-import { brand, whatsappLink } from '../../content/brand.js'
+import { brand } from '../../content/brand.js'
 import { chapters, heroText, heroVideo } from '../../content/hero.js'
 import { useMediaQuery } from '../../hooks/useMediaQuery.js'
 import './hero.css'
 
 /**
- * Inicio: video a pantalla completa que se reproduce solo y en bucle; no
- * depende del scroll. Encima, el nombre Maitú y el titular. Abajo a la
- * izquierda, un letrero que dice qué etapa se está viendo (sincronizado con
- * el tiempo del video) y una barra de 8 segmentos.
+ * Inicio (estructura inspirada en la referencia de la marca):
+ *  - video a pantalla completa que se reproduce solo y en bucle (no depende del scroll)
+ *  - a la izquierda: titular en mayúsculas, frase, botón y control del video
+ *  - a la derecha: índice vertical 01–08; cada número salta a esa etapa del video
+ *  - abajo a la izquierda: letrero de la etapa que se está viendo + barra de 8 tramos
+ *  - abajo al centro: indicador para bajar
  *
  * Props:
  *  - introDone: terminó la apertura → arranca el video y entra el texto.
@@ -97,8 +99,7 @@ export default function HeroVideo({ introDone, onReady, reducedMotion }) {
   useGSAP(
     () => {
       if (!introDone) return
-      gsap.fromTo('.hero__brand', { autoAlpha: 0, y: 30, scale: 0.97 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.4, ease: 'expo.out' })
-      gsap.fromTo('.hero__headline .js-line', { yPercent: 115 }, { yPercent: 0, duration: 1.2, stagger: 0.1, delay: 0.25, ease: 'expo.out' })
+      gsap.fromTo('.hero__title .js-line', { yPercent: 115 }, { yPercent: 0, duration: 1.2, stagger: 0.12, ease: 'expo.out' })
       gsap.fromTo('.js-fade', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.08, delay: 0.6 })
     },
     { scope: rootRef, dependencies: [introDone] },
@@ -124,6 +125,13 @@ export default function HeroVideo({ introDone, onReady, reducedMotion }) {
     }
   }
 
+  // Salta a una etapa del video desde el índice de la derecha.
+  const goToChapter = (i) => {
+    const v = videoRef.current
+    v.currentTime = chapters[i].start + 0.01
+    if (v.paused && wantsPlay.current) v.play().catch(() => {})
+  }
+
   const stage = chapters[active]
 
   return (
@@ -143,51 +151,67 @@ export default function HeroVideo({ introDone, onReady, reducedMotion }) {
       />
       <div className="hero__veil" aria-hidden="true" />
 
-      <div className="hero__center">
-        <p className="hero__eyebrow js-fade">{heroText.eyebrow}</p>
-        <h1 className="hero__brand">
-          <img src={brand.logos.white} alt={brand.name} width="528" height="408" />
-        </h1>
-        <p className="hero__headline">
+      <div className="hero__content">
+        <p className="hero__eyebrow js-fade">{brand.name} · by {brand.founder}</p>
+        <h1 className="hero__title">
           {heroText.headline.map((l, i) => (
             <span key={l} className={`mask ${i === 1 ? 'is-accent' : ''}`}>
               <span className="js-line">{l}</span>
             </span>
           ))}
-        </p>
+        </h1>
+        <p className="hero__sub js-fade">{heroText.sub}</p>
         <div className="hero__actions js-fade">
-          <a className="btn btn--light" href="#historia">Conoce nuestra historia</a>
-          <a className="btn btn--brand" href={whatsappLink()} target="_blank" rel="noreferrer">
-            Pedir por WhatsApp <span aria-hidden="true">→</span>
+          <a className="btn btn--brand" href="#cafes">
+            Conoce nuestros cafés <span aria-hidden="true">→</span>
           </a>
+          <button type="button" className="hero__watch" onClick={togglePlay} aria-label={playing ? 'Pausar video' : 'Reproducir video'}>
+            <span className="hero__watch-icon" aria-hidden="true">{playing ? '❚❚' : '►'}</span>
+            <span className="hero__watch-label">{playing ? 'Pausar video' : 'Ver el recorrido'}</span>
+          </button>
         </div>
       </div>
 
+      <nav className="hero__index js-fade" aria-label="Etapas del video">
+        <ol>
+          {chapters.map((c, i) => (
+            <li key={c.id}>
+              <button
+                type="button"
+                className={i === active ? 'is-active' : ''}
+                aria-current={i === active ? 'step' : undefined}
+                aria-label={`${c.number} ${c.title}`}
+                onClick={() => goToChapter(i)}
+              >
+                {c.number}
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
       <div className="hero__stage js-fade">
         <p className="stage__count">
-          <b>{stage.number}</b> / {chapters[chapters.length - 1].number} · El recorrido
+          <b>{stage.number}</b> / {chapters[chapters.length - 1].number} · Lo que estás viendo
         </p>
         <p className="stage__title mask" key={stage.id}>
           <span className="js-stage">{stage.title}.</span>
         </p>
         <p className="stage__caption">{stage.caption}</p>
-        <ol className="stage__bars" aria-label="Etapas del recorrido">
+        <ol className="stage__bars" aria-hidden="true">
           {chapters.map((c, i) => (
-            <li key={c.id} title={c.title}>
-              <span className="sr-only">{c.number} {c.title}</span>
+            <li key={c.id}>
               <i ref={(el) => (fillRefs.current[i] = el)} />
             </li>
           ))}
         </ol>
       </div>
 
-      <div className="hero__controls js-fade">
-        <button type="button" className="hero__play" onClick={togglePlay} aria-label={playing ? 'Pausar video' : 'Reproducir video'}>
-          <span aria-hidden="true">{playing ? '❚❚' : '►'}</span>
-          <span className="hero__play-label">{playing ? 'Pausar' : 'Reproducir'}</span>
-        </button>
-        {heroVideo.isPlaceholder && <span className="hero__notice">Video provisional</span>}
-      </div>
+      <a className="hero__scroll js-fade" href="#historia" aria-label="Bajar a Nuestra historia">
+        <span aria-hidden="true" />
+      </a>
+
+      {heroVideo.isPlaceholder && <span className="hero__notice js-fade">Video provisional</span>}
     </section>
   )
 }

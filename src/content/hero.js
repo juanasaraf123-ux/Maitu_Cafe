@@ -30,8 +30,9 @@ const VIDEOS = {
 export const heroVideo = VIDEOS.placeholder
 
 export const heroText = {
-  eyebrow: 'Café de Colombia · by Nicolas Bernal',
-  headline: ['Todo comienza', 'mucho antes', 'del primer sorbo.'],
+  // Titular en dos líneas; la segunda va en color de acento.
+  headline: ['Del origen', 'a tu taza.'],
+  sub: 'Café especial de Colombia, by Nicolas Bernal. Todo comienza mucho antes del primer sorbo.',
 }
 
 /** Etapas del recorrido (confirmadas por la marca). */

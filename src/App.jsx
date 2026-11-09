@@ -7,6 +7,8 @@ import Footer from './components/layout/Footer.jsx'
 import HeroIntro from './components/hero/HeroIntro.jsx'
 import HeroVideo from './components/hero/HeroVideo.jsx'
 import StorySection from './components/sections/StorySection.jsx'
+import ProcessSection from './components/sections/ProcessSection.jsx'
+import ProductsSection from './components/sections/ProductsSection.jsx'
 import PrepSection from './components/sections/PrepSection.jsx'
 
 export default function App() {
@@ -51,6 +53,8 @@ export default function App() {
       <main>
         <HeroVideo introDone={introDone} onReady={onFirstFrame} reducedMotion={reducedMotion} />
         <StorySection />
+        <ProcessSection />
+        <ProductsSection />
         <PrepSection />
       </main>
       <Footer />

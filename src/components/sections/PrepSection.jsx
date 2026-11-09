@@ -3,23 +3,20 @@ import { recipes } from '../../content/recipes.js'
 import { useReveal } from '../../hooks/useReveal.js'
 import './sections.css'
 
-/**
- * Preparación — las tres recetas impresas en el empaque de Maitú.
- * (Se ampliará en la Etapa 6 con videos cortos y guía paso a paso.)
- */
+/** Preparación — las tres recetas impresas en el empaque de Maitú. */
 export default function PrepSection() {
   const ref = useRef(null)
   useReveal(ref)
 
   return (
-    <section id="preparacion" ref={ref} className="section section--brand prep">
+    <section id="preparacion" ref={ref} className="section section--light-alt">
+      <span className="watermark watermark--right" aria-hidden="true">Filtrado</span>
       <div className="container">
-        <p className="eyebrow" data-reveal>Preparación</p>
-        <h2 className="section__title" data-reveal>
-          Tres formas de <em>disfrutarlo en casa</em>
-        </h2>
-        <p className="lead prep__intro" data-reveal>Las mismas recetas que encuentras en el costado de nuestro empaque.</p>
-
+        <div className="prep__head">
+          <p className="script" data-reveal>Preparación</p>
+          <h2 className="section__title" data-reveal>Tres formas de disfrutarlo en casa</h2>
+          <p className="lead" data-reveal>Las mismas recetas que encuentras en el costado de nuestro empaque.</p>
+        </div>
         <ol className="recipes">
           {recipes.map((r, i) => (
             <li key={r.id} className="recipe" data-reveal data-reveal-delay={i * 0.1}>

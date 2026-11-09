@@ -70,5 +70,7 @@ button { font: inherit; }
 .btn--light:hover { background: var(--c-beige-200); }
 .btn--brand { background: var(--c-azul-700); color: var(--c-crema-100); }
 .btn--brand:hover { background: var(--c-azul-800); }
+.btn--caramel { background: var(--c-caramelo-600); color: var(--c-crema-100); }
+.btn--caramel:hover { background: #74482a; }
 
 :focus-visible { outline: 2px solid var(--c-azul-700); outline-offset: 3px; }

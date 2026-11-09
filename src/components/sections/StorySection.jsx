@@ -1,25 +1,38 @@
 import { useRef } from 'react'
-import { brand } from '../../content/brand.js'
+import { brand, instagramLink } from '../../content/brand.js'
 import { useReveal } from '../../hooks/useReveal.js'
 import './sections.css'
 
 /**
- * Nuestra historia — texto del Manual de Marca (historia de Nicolas Bernal)
- * y la única fotografía real de la marca disponible por ahora.
- * Las fincas y productores del Tolima se agregan cuando se tengan los datos.
+ * Nuestra historia — texto izquierda, foto derecha (como "Origins" en la
+ * referencia). Texto del Manual de Marca y la foto real de Nicolas.
  */
 export default function StorySection() {
   const ref = useRef(null)
   useReveal(ref)
 
   return (
-    <section id="historia" ref={ref} className="section section--light story">
-      <div className="container story__grid">
-        <figure className="story__photo" data-reveal>
+    <section id="historia" ref={ref} className="section section--light">
+      <span className="watermark" aria-hidden="true">Maitú</span>
+      <div className="container row">
+        <div className="row__text">
+          <p className="script" data-reveal>Nuestra historia</p>
+          <h2 className="section__title" data-reveal>El origen de Maitú</h2>
+          <p className="lead" data-reveal>{brand.description}</p>
+          <p data-reveal>{brand.story[0]}</p>
+          <p data-reveal>{brand.story[2]}</p>
+          <p className="story__sign" data-reveal>— {brand.founder}</p>
+          <div className="row__actions" data-reveal>
+            <a className="btn btn--caramel" href={instagramLink} target="_blank" rel="noreferrer">
+              Síguenos en Instagram <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+        <figure className="row__media row__media--photo" data-reveal>
           <img
-            src="/media/historia/nicolas-catando-560.webp"
+            src="/media/historia/nicolas-catando.webp"
             srcSet="/media/historia/nicolas-catando-560.webp 560w, /media/historia/nicolas-catando.webp 921w"
-            sizes="(max-width: 767px) 90vw, 40vw"
+            sizes="(max-width: 899px) 92vw, 50vw"
             alt="Nicolas Bernal catando café durante una sesión de catación"
             width="921"
             height="1280"
@@ -27,18 +40,6 @@ export default function StorySection() {
           />
           <figcaption>{brand.founder}, fundador de {brand.shortName}</figcaption>
         </figure>
-
-        <div className="story__text">
-          <p className="eyebrow" data-reveal>Nuestra historia</p>
-          <h2 className="section__title" data-reveal>
-            Un puente entre <em>el pasado y el presente</em>
-          </h2>
-          <p className="lead" data-reveal>{brand.description}</p>
-          {brand.story.map((p, i) => (
-            <p key={i} data-reveal>{p}</p>
-          ))}
-          <p className="story__sign" data-reveal>— {brand.founder}</p>
-        </div>
       </div>
 
       <div className="container">

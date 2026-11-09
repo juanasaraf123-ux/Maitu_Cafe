@@ -20,6 +20,8 @@
   --c-cafe-800: #2a1c14;   /* texto principal sobre claro (14.5:1) */
   --c-cafe-600: #6e5444;   /* texto secundario sobre claro (6.2:1) */
   --c-cafe-400: #a07a5c;   /* decorativo */
+  --c-caramelo-300: #d9a86c; /* acento cálido sobre café (titular, etapa activa) */
+  --c-caramelo-600: #8a5a33; /* caramelo para texto sobre claro */
 
   /* Beige / crema — secciones claras */
   --c-crema-50:  #fbf8f3;

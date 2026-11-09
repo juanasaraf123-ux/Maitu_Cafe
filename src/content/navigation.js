@@ -1,10 +1,11 @@
 /**
  * Enlaces del menú. Solo se listan secciones que ya existen en la página;
- * "Nuestros cafés" y "Tienda" se agregan cuando se construyan (Etapa 7).
+ * la tienda con carrito se agrega en la Etapa 7.
  */
 export const navLinks = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Nuestra historia', href: '#historia' },
+  { label: 'El proceso', href: '#proceso' },
+  { label: 'Nuestros cafés', href: '#cafes' },
   { label: 'Preparación', href: '#preparacion' },
-  { label: 'Contacto', href: '#contacto' },
 ]

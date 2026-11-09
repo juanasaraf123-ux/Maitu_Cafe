@@ -1,4 +1,10 @@
-# Inicio · video a pantalla completa (versión 3)
+# Inicio · video a pantalla completa (versión 3.1)
+
+> **3.1:** la página sigue la estructura de la referencia que eligió la marca (video
+> "Follow the first drop"): titular en mayúsculas a la izquierda, índice vertical
+> 01–08 a la derecha, indicador para bajar, y debajo secciones crema que alternan texto
+> e imagen (Nuestra historia → El proceso → Nuestros cafés → Preparación) con un pie
+> de página de cuatro columnas.
 
 > Historial: v1 eran clips con cortes; v2, un recorrido fijo controlado por el
 > scroll. **v3 (actual, pedida por la marca):** el video se reproduce solo, a
@@ -13,14 +19,16 @@
    - Video a pantalla completa, en bucle y sin sonido, que se reproduce solo.
      Llena la pantalla sin deformarse (`object-fit: cover`) y tiene una versión vertical
      para el celular.
-   - Al centro: "Café de Colombia · by Nicolas Bernal", el **logo Maitú** grande, el
-     titular "Todo comienza *mucho antes* del primer sorbo." y los botones
-     *Conoce nuestra historia* y *Pedir por WhatsApp*.
+   - A la izquierda: "Maitú Café · by Nicolas Bernal", el titular **DEL ORIGEN / A TU
+     TAZA.** (segunda línea en caramelo), una frase, el botón *Conoce nuestros cafés* y
+     el control circular *Pausar video / Ver el recorrido*.
+   - A la derecha: índice vertical 01–08; cada número salta a esa etapa del video.
+   - Abajo al centro: indicador para bajar (lleva a Nuestra historia).
    - **Abajo a la izquierda, el letrero de la etapa** que se está viendo, como en la
      referencia de la marca: "04 / 08 · El recorrido", la etapa en grande
      ("El secado."), una frase corta y 8 barritas que se llenan con el video.
-   - Abajo a la derecha: botón Pausar / Reproducir (accesibilidad).
-3. Al bajar se ve **Nuestra historia**, **Preparación** y **Contacto**. El video se
+3. Al bajar se ve **Nuestra historia**, **El proceso**, **Nuestros cafés**,
+   **Preparación** y el pie de página con el contacto. El video se
    pausa cuando sale de la pantalla y se reanuda al volver.
 
 | # | Etapa | Frase del letrero | Empieza en (video provisional) |
