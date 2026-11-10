@@ -7,7 +7,22 @@ Nequi) y seguimiento de pedidos**.
 **Stack:** React 19 · Vite · React Router · GSAP · Lenis · Three.js + React Three Fiber ·
 Node 22 + Express 5 · SQLite (integrado en Node) · Wompi.
 
-## Ejecutar
+## Ver la página en tu computador (lo más fácil)
+
+Requiere Node.js 22.13 o más nuevo (https://nodejs.org). En la carpeta del proyecto:
+
+```bash
+npm install
+```
+
+```bash
+npm run vista
+```
+
+Abre http://localhost:5173 · Panel: http://localhost:5173/admin (clave `maitu-demo-2026`).
+Usa datos de ejemplo. Para apagar: Ctrl + C.
+
+## Ejecutar (desarrollo)
 
 ```bash
 npm install
